@@ -1,5 +1,9 @@
 #!/bin/sh
 
+SYNCROOT=~/sync
+
+cd $SYNCROOT
+
 if [ "`hostname -s`" != "eos" ]; then
     hg push ssh://sync.quadco.net/sync 
 fi
