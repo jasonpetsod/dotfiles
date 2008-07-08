@@ -8,8 +8,9 @@ cd $SYNCROOT
 
 if [ "`hostname -s`" != "eos" ]; then
     hg pull ssh://$SOURCE/sync
-    hg up
 fi
+
+hg up
 
 if [ -x $SYNCROOT/sync-run ]; then
     $SYNCROOT/sync-run
