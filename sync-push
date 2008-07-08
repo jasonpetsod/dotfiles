@@ -1,5 +1,5 @@
 #!/bin/sh
 
 if [ "`hostname -s`" != "eos" ]; then
-    rsync -avP --delete ~/sync sync.quadco.net:~
+    hg push ssh://sync.quadco.net/sync 
 fi

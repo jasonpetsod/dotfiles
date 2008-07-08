@@ -3,7 +3,7 @@
 SOURCE="sync.quadco.net"
 
 if [ "`hostname -s`" != "eos" ]; then
-    rsync -avP -e ssh --delete $SOURCE:~/sync ~
+    hg pull ssh://$SOURCE/sync
 fi
 
 if [ -x ~/sync/sync-run ]; then
