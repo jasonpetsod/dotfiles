@@ -1,0 +1,221 @@
+head	1.9;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.9
+date	2008.07.07.04.20.32;	author jason;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2008.07.07.02.05.15;	author jason;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2008.07.02.16.54.01;	author jason;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2007.11.10.21.03.21;	author jason;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2007.11.10.21.01.53;	author jason;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2007.11.10.21.00.04;	author jason;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2007.11.10.20.48.30;	author jason;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2007.11.10.20.41.30;	author jason;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2007.11.10.20.36.01;	author jason;	state Exp;
+branches;
+next	;
+
+
+desc
+@bash aliases
+@
+
+
+1.9
+log
+@added ach => apt-cache show
+@
+text
+@# $Id: bash_aliases,v 1.8 2008/07/07 02:05:15 jason Exp jason $
+
+alias c="./configure"
+alias ch="./configure --help"
+
+alias wg="whois -h whois.geektools.com"
+alias wa="whois -h whois.arin.net"
+
+alias ls="ls -F --color=auto"
+alias l="ls -laF --color=auto"
+alias ltr="l -tr"
+
+alias bc="bc -q ~/.bcrc"
+alias rd="rcsdiff -u"
+alias re="source ~/.bashrc"
+
+alias via="edit_config ~/.custom/.bash_aliases"
+alias vif="edit_config ~/.custom/.bash_functions"
+alias vir="edit_config ~/.custom/.bashrc"
+alias viv="edit_config ~/.custom/.vimrc"
+
+alias viam="edit_config_rcs ~/sync/etc/bash_aliases"
+alias vifm="edit_config_rcs ~/sync/etc/bash_functions"
+alias virm="edit_config_rcs ~/sync/etc/bashrc"
+alias vivm="edit_config_rcs ~/sync/etc/vimrc"
+
+alias pd="perldoc"
+alias pf="perldoc -f"
+
+alias agi="sudo apt-get install"
+alias acs="apt-cache -n search"
+alias ach="apt-cache show"
+
+# vim: ft=sh
+@
+
+
+1.8
+log
+@reorganised, added debian aliases
+@
+text
+@d1 1
+a1 1
+# $Id: bash_aliases,v 1.7 2008/07/02 16:54:01 jason Exp jason $
+d32 1
+@
+
+
+1.7
+log
+@added vi*m aliases
+@
+text
+@d1 1
+a1 1
+# $Id: bash_aliases,v 1.6 2007/11/10 21:03:21 jason Exp jason $
+d13 4
+a20 1
+alias re="source ~/.bashrc"
+d30 2
+a31 3
+alias bc="bc -q ~/.bcrc"
+
+alias rd="rcsdiff -u"
+@
+
+
+1.6
+log
+@they're _dot_files
+@
+text
+@d1 1
+a1 1
+# $Id: .bash_aliases,v 1.5 2007/11/10 21:01:53 jason Exp jason $
+d19 5
+@
+
+
+1.5
+log
+@"local" => "custom"
+@
+text
+@d1 1
+a1 1
+# $Id: .bash_aliases,v 1.4 2007/11/10 21:00:04 jason Exp jason $
+d13 4
+a16 4
+alias via="edit_config ~/.custom/bash_aliases"
+alias vif="edit_config ~/.custom/bash_functions"
+alias vir="edit_config ~/.custom/bashrc"
+alias viv="edit_config ~/.custom/vimrc"
+@
+
+
+1.4
+log
+@changed vi* aliases to edit local configuration
+@
+text
+@d1 1
+a1 1
+# $Id: .bash_aliases,v 1.3 2007/11/10 20:48:30 jason Exp jason $
+d13 4
+a16 4
+alias via="edit_config ~/.local/bash_aliases"
+alias vif="edit_config ~/.local/bash_functions"
+alias vir="edit_config ~/.local/bashrc"
+alias viv="edit_config ~/.local/vimrc"
+@
+
+
+1.3
+log
+@added "viv" to edit .vimrc
+@
+text
+@d1 1
+a1 1
+# $Id: .bash_aliases,v 1.2 2007/11/10 20:41:30 jason Exp jason $
+d13 4
+a16 4
+alias via="edit_config ~/.bash_aliases"
+alias vif="edit_config ~/.bash_functions"
+alias vir="edit_config ~/.bashrc"
+alias viv="edit_config ~/.vimrc"
+@
+
+
+1.2
+log
+@use edit_config() function
+@
+text
+@d1 1
+a1 1
+# $Id: .bash_aliases,v 1.1 2007/11/10 20:36:01 jason Exp jason $
+d16 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+# $Id$
+d13 3
+a15 4
+alias via="vi ~/.bash_aliases && re"
+alias vif="vi ~/.bash_functions && re"
+alias vic="vi ~/.bash_completion && re"
+alias vir="vi ~/.bashrc && re"
+@

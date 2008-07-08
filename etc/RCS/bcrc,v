@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2008.07.02.20.53.25;	author jason;	state Exp;
+branches;
+next	;
+
+
+desc
+@bcrc
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ * $Header$
+ *
+ */
+
+scale=3
+@

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+THIS=$SYNCROOT/etc
+DEST=$DESTROOT
+
+for f in `ls -1 $THIS`; do
+    if [ "$f" == "RCS" ]; then
+        continue
+    fi
+
+    full_f=$THIS/$f
+    
+    ln -sf $full_f $DEST/.$f
+done
+
+custom=$DEST/.custom
+if [ ! -e $custom ]; then
+    mkdir $custom
+    touch $custom/.vimrc
+fi

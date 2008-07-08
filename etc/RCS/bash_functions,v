@@ -1,0 +1,319 @@
+head	1.6;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.6
+date	2008.07.02.17.00.22;	author jason;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2008.06.20.14.34.57;	author jason;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2007.11.10.20.59.44;	author jason;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2007.11.10.20.44.42;	author jason;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2007.11.10.20.42.19;	author jason;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2007.11.10.20.36.07;	author jason;	state Exp;
+branches;
+next	;
+
+
+desc
+@bash functions
+@
+
+
+1.6
+log
+@add sync-push reminder to vi*m aliases
+@
+text
+@# $Id: bash_functions,v 1.5 2008/06/20 14:34:57 jason Exp jason $
+
+function isNodeInPath()
+{
+    spath=`echo $1 | sed 's/:/ /g'`
+    for p in $spath
+    do
+        [ "$p" = "$2" ] && {
+            return 0
+        }
+    done
+    return 1
+}
+
+function append() {
+    if [ "$#" -eq "2" ]
+    then
+        path="$1"
+        val="$2"
+        pathvar="\$$path"
+        pathval=`eval echo $pathvar`
+        if [[ ! "$val" = "" ]]
+        then
+            if [[ "$pathval" = "" ]]
+            then
+                eval "export $path=$val"
+                return 0
+            else
+                isNodeInPath $pathval $val
+                if [ $? -ne 0 ]
+                then
+                    eval "export $path=$pathval:$val"
+                    return 0
+                fi
+            fi
+        fi
+    else
+        echo "Usage: $0 VARIABLE value"
+    fi
+    return 127
+}
+
+function prepend() {
+    if [ "$#" -eq "2" ]
+    then
+        path="$1"
+        val="$2"
+        pathvar="\$$path"
+        pathval=`eval echo $pathvar`
+        if [[ ! "$val" = "" ]]
+        then
+            if [[ "$pathval" = "" ]]
+            then
+                eval "export $path=$val"
+                return 0
+            else
+                isNodeInPath $pathval $val
+                if [ $? -ne 0 ]
+                then
+                    eval "export $path=$val:$pathval"
+                    return 0
+                fi
+            fi
+        fi
+    else
+        echo "Usage: $0 VARIABLE value"
+    fi
+    return 127
+}
+
+function to() {
+    mapfile="$HOME/.maps/directories.map"
+
+    if [ ! -f $mapfile ]; then
+        echo "directory map file doesn't exist"
+    else 
+        if [ "${1}X" = "X" ]; then
+            echo "Please choose from the following 'to' destinations:"
+            echo ""
+            sort $mapfile | tr ':' ' ' | while read s d
+            do
+                printf "%-15s %s\n" $s $d
+            done
+        else
+            key=$1
+            append=""
+
+            slash_check=`echo $key | grep '/'`	
+            if [ "${slash_check}X" != "X" ]; then
+                save=$key
+                key=`echo $save | cut -d'/' -f1`	
+                append=`echo $save | sed -e "s/$key\///"` 
+                # echo "key: $key, append: $append"
+            fi	
+
+            # the directory key takes precedence
+            line=`grep "^${key}:" $mapfile`
+            if [ "${line}X" = "X" ]; then
+                type=`dest_type $key`
+            else
+                type="dir"
+            fi
+
+            case $type in
+                'host')
+                    echo "ssh $key"
+                    ssh $key	
+                    ;;
+                'user')
+                    echo "~$key"
+                    cd ~$key
+                    ;;
+                'dir')
+                    dest=`echo $line | awk -F':' '{print $2}'` 
+                    if [ "${append}X" != "X" ]; then
+                        dest="$dest/$append"	
+                    fi
+
+                    if [ -d "$dest" ]; then
+                        echo "$dest"
+                        # dest=`eval "echo $dest"`
+                        cd "$dest"
+                    else
+                        echo "destination '$dest' is not a directory"
+                    fi
+                    ;;
+                *)
+                    echo "Unknown type for key [$key]: \"$type\""	
+                    ;;
+            esac
+        fi
+    fi
+}
+
+function viw {
+    vi `which $1`
+}
+
+function edit_config {
+    vi $1
+    re
+}
+
+function edit_config_rcs {
+    co -l $1
+    vi $1
+    ci -u $1
+    re
+
+    echo
+    echo "Remember to run sync-push if changes were made."
+}
+
+# vim: ft=sh
+@
+
+
+1.5
+log
+@fix to() not being able to cd to dirs that have spaces in their names
+@
+text
+@d1 1
+a1 1
+# $Id: .bash_functions,v 1.4 2007/11/10 20:59:44 jason Exp jason $
+d149 3
+@
+
+
+1.4
+log
+@added edit_config, edit_config_rcs
+@
+text
+@d1 1
+a1 1
+# $Id: .bash_functions,v 1.3 2007/11/10 20:44:42 jason Exp jason $
+d122 1
+a122 1
+                        cd $dest
+@
+
+
+1.3
+log
+@fixed to() indentation
+@
+text
+@d1 1
+a1 1
+# $Id: .bash_functions,v 1.2 2007/11/10 20:42:19 jason Exp jason $
+d140 5
+@
+
+
+1.2
+log
+@implemented edit_config()
+@
+text
+@d1 1
+a1 1
+# $Id: .bash_functions,v 1.1 2007/11/10 20:36:07 jason Exp jason $
+d81 3
+a83 19
+        do
+            printf "%-15s %s\n" $s $d
+        done
+    else
+        key=$1
+        append=""
+
+        slash_check=`echo $key | grep '/'`	
+        if [ "${slash_check}X" != "X" ]; then
+            save=$key
+            key=`echo $save | cut -d'/' -f1`	
+            append=`echo $save | sed -e "s/$key\///"` 
+            # echo "key: $key, append: $append"
+        fi	
+
+        # the directory key takes precedence
+        line=`grep "^${key}:" $mapfile`
+        if [ "${line}X" = "X" ]; then
+            type=`dest_type $key`
+d85 2
+a86 2
+            type="dir"
+        fi
+d88 15
+a102 14
+        case $type in
+            'host')
+                echo "ssh $key"
+                ssh $key	
+                ;;
+            'user')
+                echo "~$key"
+                cd ~$key
+                ;;
+            'dir')
+                dest=`echo $line | awk -F':' '{print $2}'` 
+                if [ "${append}X" != "X" ]; then
+                    dest="$dest/$append"	
+                fi
+d104 28
+a131 12
+                if [ -d "$dest" ]; then
+                    echo "$dest"
+                    # dest=`eval "echo $dest"`
+                    cd $dest
+                else
+                    echo "destination '$dest' is not a directory"
+                fi
+                ;;
+            *)
+                echo "Unknown type for key [$key]: \"$type\""	
+                ;;
+        esac
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+# $Id$
+d138 7
+@

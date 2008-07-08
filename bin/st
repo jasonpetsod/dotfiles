@@ -1,0 +1,8 @@
+#!/bin/bash
+
+title=`hostname -s`
+if [ $# -gt 0 ]; then
+    title="$1"
+fi
+
+echo -ne "\\ek${title}\\e\\\\"

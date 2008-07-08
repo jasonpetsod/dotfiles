@@ -1,0 +1,21 @@
+#!/bin/bash
+
+host=`hostname -s`
+path=${PWD/$HOME/\~}
+
+title="$host $path"
+
+if [ "`uname`" == "Linux" ]; then
+    sed="sed -r"
+elif [ "`uname`" == "Darwin" ]; then
+    sed="sed -E"
+fi
+
+if [ ${#title} -gt 20 ]; then
+    #path=`echo $path | sed -E 's/^([^\/]+)?\/.*\/(.+)$/\1\/...\/\2/'`
+    path=`echo $path | $sed 's#^([^/]+)?/.*/(.+)$#\1/*/\2#'`
+fi
+
+title="$host $path"
+
+echo -n "$title"

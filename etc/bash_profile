@@ -1,0 +1,5 @@
+# $Id: .bash_profile,v 1.1 2007/11/10 20:36:13 jason Exp $
+
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi

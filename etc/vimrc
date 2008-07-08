@@ -1,0 +1,68 @@
+" $Id: vimrc,v 1.12 2008/04/11 05:19:09 jason Exp $
+
+set ruler
+set showcmd
+set incsearch
+
+syn on
+set nocompatible
+set nobackup
+set nowritebackup
+set background=dark
+set backspace=indent,eol,start
+set foldmethod=marker 
+set smartcase
+
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set shiftround
+set nowrap
+set expandtab
+set smarttab
+set tw=78
+
+set pastetoggle=<F7>
+
+set spelllang=en_us,en_gb
+set spellfile=~/.spell.add
+
+if &term == "screen"
+    set t_ts=k
+    set t_fs=\
+    set title
+    let &titlestring = system("hostname -s") . " " .  expand("%:t")
+endif
+
+filetype plugin indent on
+
+" add shell/Perl comments
+vnoremap ] :s/^/#/<RETURN>
+vnoremap [ :s/^#//<RETURN>
+
+" remappings for my silly mistakes
+imap [:w <ESC>:w<RETURN>
+imap [:W <ESC>:w<RETURN>
+command W w
+command Q q
+command WQ wq
+command QW wq
+
+" Perl abbreviations
+iab pl! <ESC>:r ~/.vim/perl_skel<RETURN>:set filetype=perl<RETURN>ggdd/%start%/<RETURN><ESC>ddO
+iab uddmp use Data::Dumper;<RETURN>print Dumper
+iab ddmp print Dumper
+
+" LaTeX files
+au! BufNewFile,BufRead *.tex set ft=tex 
+au! FileType tex nnoremap <C-t> :w!<RETURN>:!pdflatex "%"<RETURN> | set spell
+
+" text files
+au! FileType text set spell
+
+" run Makefile
+nnoremap <C-e> :w!<RETURN>:!make<RETURN>
+
+" paragraph reformatting
+vnoremap Q gq
+nnoremap Q gqap

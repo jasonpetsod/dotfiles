@@ -1,0 +1,34 @@
+# $Id: bash_aliases,v 1.9 2008/07/07 04:20:32 jason Exp $
+
+alias c="./configure"
+alias ch="./configure --help"
+
+alias wg="whois -h whois.geektools.com"
+alias wa="whois -h whois.arin.net"
+
+alias ls="ls -F --color=auto"
+alias l="ls -laF --color=auto"
+alias ltr="l -tr"
+
+alias bc="bc -q ~/.bcrc"
+alias rd="rcsdiff -u"
+alias re="source ~/.bashrc"
+
+alias via="edit_config ~/.custom/.bash_aliases"
+alias vif="edit_config ~/.custom/.bash_functions"
+alias vir="edit_config ~/.custom/.bashrc"
+alias viv="edit_config ~/.custom/.vimrc"
+
+alias viam="edit_config_rcs ~/sync/etc/bash_aliases"
+alias vifm="edit_config_rcs ~/sync/etc/bash_functions"
+alias virm="edit_config_rcs ~/sync/etc/bashrc"
+alias vivm="edit_config_rcs ~/sync/etc/vimrc"
+
+alias pd="perldoc"
+alias pf="perldoc -f"
+
+alias agi="sudo apt-get install"
+alias acs="apt-cache -n search"
+alias ach="apt-cache show"
+
+# vim: ft=sh

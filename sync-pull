@@ -1,0 +1,14 @@
+#!/bin/bash
+
+SOURCE="sync.quadco.net"
+
+if [ "`hostname -s`" != "eos" ]; then
+    rsync -avP -e ssh --delete $SOURCE:~/sync ~
+fi
+
+if [ -x ~/sync/sync-run ]; then
+    ~/sync/sync-run
+else
+    echo "sync-run script not executable"
+    exit 1
+fi

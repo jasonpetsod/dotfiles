@@ -1,0 +1,19 @@
+#!/bin/sh
+
+THIS=$SYNCROOT/bin
+DEST=$DESTROOT/bin
+
+if [ ! -e $DEST ]; then
+    mkdir $DEST
+elif [ ! -d $DEST ]; then
+    echo "$DEST already exits"
+    exit 1
+fi
+
+for f in `ls -1 $THIS`; do
+    full_f=$THIS/$f
+
+    if [ -x $full_f ]; then
+        ln -sf $full_f $DEST/$f
+    fi
+done

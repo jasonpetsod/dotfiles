@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# $Header: /Users/jason/dev/archive/RCS/archive,v 1.1 2008/06/24 19:09:20 jason Exp $
+
+dir=`pwd`
+archive="$dir/.archive"
+meta="$archive/.meta"
+
+# ----------------------------------------------------------------------------
+# sanity checks
+# ----------------------------------------------------------------------------
+
+for dir in $archive $meta
+do
+    # die if exists but is not a dir
+    if [ -e $dir -a ! -d $dir ]; then
+        echo "ERROR: '$dir' exists but is not a directory"
+        exit 1
+    fi
+
+    # create dir dir if it doesn't exist
+    if [ ! -e $dir ]; then
+        mkdir $dir
+    fi
+done
+
+# if archive dir was writable, print a warning
+if [ -w $archive ]; then
+    echo "WARNING: archive dir '$archive' was writable; fixing"
+    chmod -w $archive
+fi
+
+# ----------------------------------------------------------------------------
+# the actual work
+# ----------------------------------------------------------------------------
+
+for file in $*
+do
+    # make sure there won't be any overwritings taking place
+    if [ -e $archive/$file ]; then
+        echo "ERROR: '$file' already exists in '$archive'"
+        exit 2
+    fi
+
+    # make sure we can actually move the directory
+    if [ -d $file -a ! -w $file ]; then
+        echo "ERROR: '$file' is not writable"
+        exit 2
+    fi
+
+    # get file metadata
+    file_meta=`ls -laRF --full-time $file`
+    
+    # generate metafile path
+    metafile="$meta/$file"
+    metafile=${metafile%/}
+
+    # make $archive writable briefly
+    chmod +w $archive
+
+    # move the thing
+    mv -n $file $archive
+
+    # make readonly
+    chmod -R -w $archive/$file
+
+    # write file metadata
+    echo "$file_meta" > $metafile
+    gzip $metafile
+
+    # make $archive readonly
+    chmod -w $archive
+done

@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# $Header$
+
+# ----------------------------------------------------------------------------
+# variables
+# ----------------------------------------------------------------------------
+
+SYNCROOT=~/sync
+DESTROOT=~
+#DESTROOT=~/tmp/sync
+
+export SYNCROOT DESTROOT
+
+# ----------------------------------------------------------------------------
+# stuff happens
+# ----------------------------------------------------------------------------
+
+# each directory in $SYNCROOT is a sync object and contains an executable
+# .do-sync that is run by this script to perform whatever synchronisation
+# actions need to occur
+
+for f in `ls -1 $SYNCROOT`; do
+    full_f=$SYNCROOT/$f
+
+    if [ -d $full_f ]; then
+        script=$full_f/.do-sync
+
+        if [ -x $script ]; then
+            . $script
+        fi
+    fi
+done
