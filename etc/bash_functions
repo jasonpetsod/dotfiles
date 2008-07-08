@@ -141,14 +141,4 @@ function edit_config {
     re
 }
 
-function edit_config_rcs {
-    co -l $1
-    vi $1
-    ci -u $1
-    re
-
-    echo
-    echo "Remember to run sync-push if changes were made."
-}
-
 # vim: ft=sh

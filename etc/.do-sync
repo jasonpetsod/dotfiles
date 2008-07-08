@@ -4,7 +4,7 @@ THIS=$SYNCROOT/etc
 DEST=$DESTROOT
 
 for f in `ls -1 $THIS`; do
-    if [ "$f" == "RCS" ]; then
+    if [ "$f" == "RCS-disabled" ]; then
         continue
     fi
 
