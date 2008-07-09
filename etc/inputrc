@@ -1,0 +1,5 @@
+set bell-style off
+set editing-mode vi
+set page-completions off
+set show-all-if-ambiguous on
+set visible-stats on
