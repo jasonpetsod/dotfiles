@@ -1,5 +1,3 @@
-# $Id: bashrc,v 1.6 2008/07/02 22:01:21 jason Exp $
-
 # nice prompt
 export PS1='\e[01;37m\h \w \$\e[0m '
 

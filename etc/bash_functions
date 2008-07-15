@@ -1,5 +1,3 @@
-# $Id: bash_functions,v 1.6 2008/07/02 17:00:22 jason Exp $
-
 function isNodeInPath()
 {
     spath=`echo $1 | sed 's/:/ /g'`

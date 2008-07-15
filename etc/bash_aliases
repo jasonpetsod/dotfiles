@@ -1,5 +1,3 @@
-# $Id: bash_aliases,v 1.9 2008/07/07 04:20:32 jason Exp $
-
 alias c="./configure"
 alias ch="./configure --help"
 
