@@ -29,4 +29,6 @@ alias agi="sudo apt-get install"
 alias acs="apt-cache -n search"
 alias ach="apt-cache show"
 
+alias yd="pydoc"
+
 # vim: ft=sh
