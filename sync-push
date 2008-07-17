@@ -4,6 +4,8 @@ SYNCROOT=~/sync
 
 cd $SYNCROOT
 
+hg ci
+
 if [ "`hostname -s`" != "eos" ]; then
     hg push ssh://sync.quadco.net/sync 
 fi
