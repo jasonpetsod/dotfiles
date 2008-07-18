@@ -31,4 +31,6 @@ alias ach="apt-cache show"
 
 alias yd="pydoc"
 
+alias hgd="hg diff"
+
 # vim: ft=sh
