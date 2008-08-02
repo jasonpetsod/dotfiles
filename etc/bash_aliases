@@ -33,4 +33,6 @@ alias yd="pydoc"
 
 alias hgd="hg diff"
 
+alias getkey="gpg --keyserver pgpkeys.mit.edu --recv-key"
+
 # vim: ft=sh
