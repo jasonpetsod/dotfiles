@@ -35,4 +35,6 @@ alias hgd="hg diff"
 
 alias getkey="gpg --keyserver pgpkeys.mit.edu --recv-key"
 
+alias j="jobs"
+
 # vim: ft=sh
