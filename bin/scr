@@ -1,0 +1,22 @@
+#!/usr/bin/python
+
+import commands
+import os
+import sys
+
+try:
+    screen = sys.argv[1]
+except IndexError:
+    screen = "main"
+
+# wipe dead screens
+os.spawnlp("screen", "-wipe")
+
+# get list of screen
+screens = commands.getoutput("screen -ls | grep %s" % screen)
+
+# if there's a matching screen, reattach. if not, create a new one
+if screens:
+    os.execlp("screen", "-x", screen)
+else:
+    os.execlp("screen", "-S", screen)
