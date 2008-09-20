@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# run local post-sync script
+
+SCRIPT="~/.custom/post-sync"
+
+if [ -e $SCRIPT ]; then
+    . $SCRIPT
+fi
