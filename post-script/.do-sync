@@ -2,8 +2,8 @@
 
 # run local post-sync script
 
-SCRIPT="~/.custom/post-sync"
+script=~/.custom/post-sync
 
-if [ -e $SCRIPT ]; then
-    . $SCRIPT
+if [ -e $script ]; then
+    . $script
 fi
