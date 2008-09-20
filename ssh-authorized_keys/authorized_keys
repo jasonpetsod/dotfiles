@@ -1,7 +1,7 @@
 # OpenSSH authorized_keys
 #
 # This file is controlled by sync-run. For custom host-specfic changes, edit
-# ``~/.custom/authorized_keys'' and then run ``~/sync/sync-run''.
+# ``~/.custom/authorized_keys'' and then run ``~/.sync/sync-run''.
 #
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1lAgTyQbli6DMtElLraapPWnbxV//oLKFgFWnuOgfKrtQudjyc0D3dtZr1gzkxAuzXT0XnTMbFNGnah06GlBxpzQKBw9RUnRQoosqYK639FMKcg+F59c3eKE2DQtZT8V74HG3R1rpweSPB7SkxHFKcwVdWPph6AGwUioyMO/x55lovOIhzKO4xE8n6yrCQKlSeNjFCFehlkxZJnnlfApY2RENTM1O+jm9fhD9+bDkMthELYJfMh8fmF6f91n5AiVQxZpem+0lRyUWLy/pv5pdfNEzMDZEjctseky8LqeOQdVKKdWc2O99KSSbVkwg7Psp6L/NcS3vCaQlDhjpBNX1w== jason@ambrosia 20060610
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEArl56hNzSPfsANMCi/BM+IoVQkJMJaeNwfufPrQOIDPe9IXM7xcbdcBo148sTIfwEAUX/ByDZAd1HG5IcHmiRJK5PyDz3vCIDcdpp5eiK4XcgORpK+SSVTmFN9lfU3i8v3mgN+RgcOuT+okSa9YwGqGBHO3AyByH3gjl53pTejm3Dm0pGCJB9jquLieuOMa5v3P+s2Xtp5c4Y0mRGLDJFj55ywBzOafTZ2vVhpnOuJaFj6Hfll8GSxBksFz3cOiWnwvsA/57QHox47A3cHAA9dkMAyQ5EhGOqWjmrqwLqC6GwXZgT+P8pnEmG3oJ9k3Hje6vUtaQAf/mSLJLLIVNPFw== jason@eos.home.quadco.net

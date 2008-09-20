@@ -6,9 +6,8 @@
 # variables
 # ----------------------------------------------------------------------------
 
-SYNCROOT=~/sync
+SYNCROOT=~/.sync
 DESTROOT=~
-#DESTROOT=~/tmp/sync
 
 export SYNCROOT DESTROOT
 

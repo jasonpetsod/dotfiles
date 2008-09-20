@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SYNCROOT=~/sync
+SYNCROOT=~/.sync
 
 cd $SYNCROOT
 
