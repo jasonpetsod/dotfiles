@@ -3,7 +3,11 @@
 host=`hostname -s`
 path=${PWD/$HOME/\~}
 
-title="$host $path"
+if [ -n "$SSH_CONNECTION" ]; then
+    title="$host $path"
+else
+    title="$path"
+fi
 
 if [ "`uname`" == "Linux" ]; then
     sed="sed -r"
@@ -12,10 +16,13 @@ elif [ "`uname`" == "Darwin" ]; then
 fi
 
 if [ ${#title} -gt 20 ]; then
-    #path=`echo $path | sed -E 's/^([^\/]+)?\/.*\/(.+)$/\1\/...\/\2/'`
     path=`echo $path | $sed 's#^([^/]+)?/.*/(.+)$#\1/*/\2#'`
 fi
 
-title="$host $path"
+if [ -n "$SSH_CONNECTION" ]; then
+    title="$host $path"
+else
+    title="$path"
+fi
 
 echo -n "$title"
