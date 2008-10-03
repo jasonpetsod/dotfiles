@@ -6,7 +6,7 @@ SYNCROOT=~/.sync
 # need to cd to make mercurial work
 cd $SYNCROOT
 
-if [ "`hostname -s`" != "eos" ]; then
+if [ "`shorthost`" != "eos" ]; then
     hg pull ssh://$SOURCE/sync
 fi
 

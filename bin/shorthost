@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cat /etc/hostname | cut -d. -f1

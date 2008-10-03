@@ -1,6 +1,6 @@
 #!/bin/bash
 
-title=`hostname -s`
+title=`shorthost`
 if [ $# -gt 0 ]; then
     title="$1"
 fi

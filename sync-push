@@ -4,7 +4,7 @@ SYNCROOT=~/.sync
 
 cd $SYNCROOT
 
-if [ "`hostname -s`" != "eos" ]; then
+if [ "`shorthost`" != "eos" ]; then
     hg ci
     hg push ssh://sync.quadco.net/sync 
 fi

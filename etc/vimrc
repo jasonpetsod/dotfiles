@@ -29,7 +29,7 @@ if &term == "screen"
     set t_ts=k
     set t_fs=\
     set title
-    let &titlestring = system("hostname -s") . " " .  expand("%:t")
+    let &titlestring = system("shorthost") . " " .  expand("%:t")
 endif
 
 filetype plugin indent on
