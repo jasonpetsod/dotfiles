@@ -3,11 +3,17 @@
 host=`shorthost`
 path=${PWD/$HOME/\~}
 
-if [ -n "$SSH_CONNECTION" ]; then
-    title="$host $path"
-else
-    title="$path"
-fi
+function get_title() {
+    # don't put the hostname in the screen title if it's a local screen
+    # session
+    if [ -n "$STY" ]; then
+        title="$path"
+    else
+        title="$host $path"
+    fi
+}
+
+get_title
 
 if [ "`uname`" == "Linux" ]; then
     sed="sed -r"
@@ -16,13 +22,9 @@ elif [ "`uname`" == "Darwin" ]; then
 fi
 
 if [ ${#title} -gt 20 ]; then
-    path=`echo $path | $sed 's#^([^/]+)?/.*/(.+)$#\1/*/\2#'`
+    path=`echo $path | $sed 's#^([^/]+)?/.*/(.+)$#\1*/\2#'`
 fi
 
-if [ -n "$SSH_CONNECTION" ]; then
-    title="$host $path"
-else
-    title="$path"
-fi
+get_title
 
 echo -n "$title"
