@@ -1,0 +1,27 @@
+vbell off
+bell_msg ""
+defscrollback 10000
+startup_message off
+msgminwait 1
+
+shell bash
+
+attrcolor B "wR"
+
+caption always '%{ck}%D %{yk}%d-%M %{gk}%0c %= %{Mk}%H %{wk}%?%-Lw%?%{kG}%n*%f %t%?(%u)%?%{wk}%?%+Lw'
+
+bind |
+bind s
+bind k
+bind ^k
+bind K kill
+bind , readbuf
+#bindkey ^X command
+
+bind -c more 0 select 10
+bind -c more 1 select 11
+bind -c more 2 select 12
+bind -c more 3 select 13
+bind - command -c more
+
+source $HOME/.custom/.screenrc

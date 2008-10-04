@@ -13,8 +13,18 @@ for f in `ls -1 $THIS`; do
     ln -sf $full_f $DEST/.$f
 done
 
+# make sure the custom (local to host) config dir exists
 custom=$DEST/.custom
 if [ ! -e $custom ]; then
     mkdir $custom
-    touch $custom/.vimrc
 fi
+
+# add custom config files that need to exist
+custom_files=".vimrc .screenrc"
+for f in $custom_files; do
+    full_f=$custom/$f
+
+    if [ ! -e $full_f ]; then
+        touch $full_f
+    fi
+done
