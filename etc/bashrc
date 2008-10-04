@@ -13,6 +13,7 @@ export LESS="-e"
 export GREP_OPTIONS="--color=auto"
 export EDITOR="vim"
 export LC_ALL=POSIX
+export TZ="America/Chicago"
 
 # shell,tty options
 shopt -s checkwinsize
