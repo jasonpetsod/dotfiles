@@ -25,9 +25,11 @@ alias vivm="edit_config ~/.sync/etc/vimrc"
 alias pd="perldoc"
 alias pf="perldoc -f"
 
-alias agi="sudo apt-get install"
-alias acs="apt-cache -n search"
-alias ach="apt-cache show"
+if [ -f /etc/debian_version ]; then
+    alias agi="sudo apt-get install"
+    alias acs="apt-cache -n search"
+    alias ach="apt-cache show"
+fi
 
 alias yd="pydoc"
 
