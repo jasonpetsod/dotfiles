@@ -1,5 +1,13 @@
 # nice prompt
-export PS1='\e[01;37m\h \w \$\e[0m '
+if [ `id -u` == 0 ]; then
+    # bright red
+    prompt_color='\e[01;31m'
+else
+    # bright white
+    prompt_color='\e[01;37m'
+fi
+
+export PS1="$prompt_color\h \w \\$\\e[0m "
 
 # we want vi mode
 set -o vi
