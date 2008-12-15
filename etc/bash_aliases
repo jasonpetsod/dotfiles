@@ -26,7 +26,7 @@ alias pd="perldoc"
 alias pf="perldoc -f"
 
 if [ -f /etc/debian_version ]; then
-    alias agi="sudo apt-get install"
+    alias agi="sudo apt-get install && sudo hg diff /etc"
     alias acs="apt-cache -n search"
     alias ach="apt-cache show"
 fi
