@@ -1,13 +1,22 @@
-# nice prompt
-if [ `id -u` == 0 ]; then
-    # bright red
-    prompt_color='\e[01;31m'
+# set home directory
+if [ "`uname`" = "Darwin" ]; then
+    export HOME=/Users/jason
 else
-    # bright white
-    prompt_color='\e[01;37m'
+    export HOME=/home/jason
 fi
 
-export PS1="$prompt_color\h \w \\$\\e[0m "
+# nice prompt
+if [ `id -u` -eq 0 ]; then
+    # bright red
+    prompt_prefix='\e[01;31m'
+elif [ "`whoami`" != "jason" ]; then
+    prompt_prefix='\e[01;34m\u\e[01;37m@'
+else
+    # bright white
+    prompt_prefix='\e[01;37m'
+fi
+
+export PS1="$prompt_prefix\h \w \\$\\e[0m "
 
 # we want vi mode
 set -o vi
