@@ -152,11 +152,13 @@ function etc_diff {
     fi
 }
 
-function agi {
-    etc_diff
-    sudo apt-get install $* 
-    etc_diff
-    unset diff
-}
+if [ -f /etc/debian_version ]; then
+    function agi {
+        etc_diff
+        sudo apt-get install $* 
+        etc_diff
+        unset diff
+    }
+fi
 
 # vim: ft=sh
