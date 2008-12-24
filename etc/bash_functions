@@ -139,23 +139,24 @@ function edit_config {
     re
 }
 
-function agi {
-    diff=`sudo hg st /etc`
+function etc_diff {
+    diff="`sudo hg st /etc`"
     if [ -n "$diff" ]; then
-        echo "WARNING: uncommitted changes in /etc:"
-        echo $diff
+        diff="`echo \"$diff\" | sed -r 's#(\.\./)+#/#g'`"
         echo
-        echo "Press any key to continue..."
+        echo "WARNING: uncommitted changes in /etc:"
+        echo "$diff"
+        echo
+        echo "Press <ENTER> to continue..."
         read
     fi
+}
 
+function agi {
+    etc_diff
     sudo apt-get install $* 
-    
-    if [ $? -eq 0 ]; then
-        echo
-        echo "Uncommitted changes in /etc:"
-        sudo hg st /etc
-    fi
+    etc_diff
+    unset diff
 }
 
 # vim: ft=sh
