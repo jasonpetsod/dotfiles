@@ -10,6 +10,10 @@ elif [ ! -d $DEST ]; then
     exit 1
 fi
 
+# remove all old symlinks
+find $DEST -type l -lname "*.sync/*" -delete
+
+# create symlinks for binaries
 for f in `ls -1 $THIS`; do
     full_f=$THIS/$f
 
