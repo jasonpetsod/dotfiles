@@ -156,6 +156,7 @@ function agi {
     etc_diff
     sudo apt-get install $* 
     etc_diff
+    unset diff
 }
 
 # vim: ft=sh
