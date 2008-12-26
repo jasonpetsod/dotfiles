@@ -142,7 +142,7 @@ function edit_config {
 function etc_diff {
     diff="`sudo hg st /etc`"
     if [ -n "$diff" ]; then
-        diff="`echo \"$diff\" | sed -r 's#(\.\./)+#/#g'`"
+        diff="`echo \"$diff\" | sed -r 's#(\.\./)+etc#/etc#g'`"
         echo
         echo "WARNING: uncommitted changes in /etc:"
         echo "$diff"
