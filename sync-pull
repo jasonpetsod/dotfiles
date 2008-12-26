@@ -1,20 +1,16 @@
 #!/bin/bash
 
-SOURCE="sync.quadco.net"
 SYNCROOT=~/.sync
 
-# need to cd to make mercurial work
+# cd to the repository
 cd $SYNCROOT
 
-if [ "`shorthost`" != "eos" ]; then
-    hg pull ssh://$SOURCE/sync
-fi
-
+hg pull https://hg.quadco.net/sync
 hg up
 
 if [ -x $SYNCROOT/sync-run ]; then
     $SYNCROOT/sync-run
 else
-    echo "sync-run script not executable"
+    echo "sync-run is not executable"
     exit 1
 fi
