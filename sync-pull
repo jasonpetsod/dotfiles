@@ -5,8 +5,8 @@ SYNCROOT=~/.sync
 # cd to the repository
 cd $SYNCROOT
 
-hg pull https://hg.quadco.net/sync > /dev/null
-hg up > /dev/null
+hg pull https://hg.quadco.net/sync
+hg up
 
 if [ -x $SYNCROOT/sync-run ]; then
     $SYNCROOT/sync-run
