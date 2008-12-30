@@ -1,2 +1,12 @@
 [ui]
 username = Jason Petsod <jason@petsod.org>
+
+[trusted]
+users = root
+groups = root
+
+[extensions]
+hgext.mq = 
+
+[diff]
+git = true
