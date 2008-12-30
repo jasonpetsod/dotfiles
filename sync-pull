@@ -5,6 +5,10 @@ SYNCROOT=~/.sync
 # cd to the repository
 cd $SYNCROOT
 
+if [ -n "`hg st`" ]; then
+    echo "WARNING: uncommitted changes in $SYNCROOT" >&2
+fi
+
 hg pull https://hg.quadco.net/sync
 hg up
 
