@@ -1,0 +1,29 @@
+#!/bin/sh
+
+THIS=$SYNCROOT/ssh-authorized_keys
+DEST=$DESTROOT/.ssh
+
+# sanity checks
+if [ ! -e $DEST ]; then
+    mkdir $DEST
+fi
+
+if [ ! -d $DEST ]; then
+    echo "$DEST is not a directory"
+    exit 1
+fi
+
+# fix permissions
+chmod 700 $DEST
+chmod -R go-rwx $DEST
+
+# do stuff
+cp -f $THIS/authorized_keys $DEST
+
+if [ -r ~/.custom/authorized_keys ]; then
+    cat ~/.custom/authorized_keys >> $DEST/authorized_keys
+fi
+
+# remove write permissions to discourage manual editing as custom changes get
+# clobbered each time sync-run is executed
+chmod -w $DEST/authorized_keys
