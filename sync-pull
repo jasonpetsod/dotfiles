@@ -7,6 +7,11 @@ cd $SYNCROOT
 
 if [ -n "`hg st`" ]; then
     echo "WARNING: uncommitted changes in $SYNCROOT" >&2
+
+    if [ ! -t 0 ]; then
+        echo "ERROR: will not run unattended with uncommitted changes; dying" >&2
+        exit 1
+    fi
 fi
 
 hg pull https://hg.quadco.net/sync
