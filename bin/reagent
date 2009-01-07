@@ -1,0 +1,141 @@
+#!/bin/bash
+
+# reagent: allow all sessions on a host to use the the forwarded agent
+# 
+# This script maintains a symlink $AUTH_SOCK_LINK which all sessions use as
+# their $SSH_AUTH_SOCK and tries to keep $AUTH_SOCK_LINK pointing to the
+# newest created agent socket. Ideally, in the user's ~/.profile, this script
+# will be called (`reagent add $SSH_AUTH_SOCK`) to update the symlink whenever
+# a new SSH agent-forwarded session is created. Additionally, in ~/.logout,
+# this script should be called (`reagent del $SSH_AUTH_SOCK`) to remove the
+# session's agent socket and prevent it from being linked to.
+
+umask 077
+
+# ============================================================================
+# variables
+# ============================================================================
+
+# $SOCKETS_FILE contains a listing of all the known active agent sockets,
+# with the oldest last. When a new socket is added, the script relinks
+# $AUTH_SOCK_LINK to point to the new socket. When a socket is deleted, the
+# script relinks $AUTH_SOCK_LINK to point to the newest socket (last socket
+# listed)
+SOCKETS_FILE=$HOME/.ssh/agent-sockets
+
+AUTH_SOCK_LINK=$HOME/.ssh/auth-sock
+
+# ============================================================================
+# helper functions
+# ============================================================================
+
+function fatal() {
+    echo "$0: FATAL: $1" >&2
+    exit 1
+}
+
+function debug() {
+    # only print debugging info if connected to a console
+    if [ -t 0 ]; then
+        echo "$0: $1" >&2
+    fi
+}
+
+# ============================================================================
+# initialisation
+# ============================================================================
+
+# make sure sockets file exists
+if [ ! -e $SOCKETS_FILE ]; then
+    touch $SOCKETS_FILE
+    chmod 600 $SOCKETS_FILE 
+fi
+
+# make sure sockets file is user-owned
+if [ ! -O "$SOCKETS_FILE" ]; then
+    fatal "$SOCKETS_FILE is not user-owned"
+fi
+
+# make sure sockets file is not readable/writable by anyone else
+if [ "`stat -c %a $SOCKETS_FILE`" != "600" ]; then
+    fatal "$SOCKETS_FILE is not permissioned correctly (should be 0600)"
+fi
+
+# if socket link exists, make sure it is a link
+if [ -e $AUTH_SOCK_LINK -a ! -L $AUTH_SOCK_LINK ]; then
+    fatal "$AUTH_SOCK_LINK is not a symlink"
+fi
+
+# ============================================================================
+# do stuff
+# ============================================================================
+
+function del_socket() {
+    socket="$1"
+    if [ -z "$socket" ]; then
+        fatal "a socket must be specified"
+    fi
+
+    # remove the specified socket from the sockets file
+    tmp="$SOCKETS_FILE.new"
+    grep -v "^$socket$" $SOCKETS_FILE > $tmp
+    mv -f $tmp $SOCKETS_FILE
+
+    debug "removed socket $socket"
+
+    # get the new active socket (remove stale sockets in the process)
+    socket=`tail -n 1 $SOCKETS_FILE`
+    while [ ! -S $socket ]; do
+        tmp="$SOCKETS_FILE.new"
+        head -n -1 $SOCKETS_FILE > $tmp
+        mv -f $tmp $SOCKETS_FILE
+
+        debug "removed stale socket $socket"
+
+        socket=`tail -n 1 $SOCKETS_FILE`
+    done
+
+    # if there is no socket, remove the symlink
+    # otherwise, replace the symlink with the new active socket
+    if [ -z "$socket" ]; then
+        rm -f $AUTH_SOCK_LINK
+        debug "no more sockets exist"
+    else
+        ln -sf $socket $AUTH_SOCK_LINK
+        debug "$socket is now the active socket"
+    fi
+}
+
+case "$1" in
+    "add")
+        socket="$2"
+        if [ -z "$socket" ]; then
+            fatal "a socket must be specified"
+        fi
+
+        if [ ! -S "$socket" ]; then
+            fatal "$socket is not a socket"
+        fi
+
+        # add the socket
+        echo "$socket" >> $SOCKETS_FILE
+
+        # make the new socket the active one
+        ln -sf $socket $AUTH_SOCK_LINK
+        debug "$socket is now the active socket"
+        ;;
+    "del")
+        del_socket "$2"
+        ;;
+    "pop")
+        # remove the newest socket; we could use "head -n -1 [...]", but
+        # consistency is better
+        socket=`tail -n 1 $SOCKETS_FILE`
+        del_socket "$socket"
+        ;;
+    "list")
+        cat $SOCKETS_FILE
+        ;;
+    *)
+        fatal "invalid command"
+esac
