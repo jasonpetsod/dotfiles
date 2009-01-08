@@ -1,0 +1,10 @@
+#!/bin/sh
+
+THIS=$SYNCROOT/etc
+DEST=$DESTROOT
+
+output="`find -L ~ ~/bin -maxdepth 1 -type l -lname "$SYNCROOT/*" -print -delete`"
+if [ -n "$output" ]; then
+    echo "removed broken links:" >&2
+    echo "$output" >&2
+fi
