@@ -20,7 +20,10 @@ if [[ -f /etc/debian_version ]]; then
     alias ach="apt-cache show"
 fi
 
+# ============================================================================
 # dotfile management
+# ============================================================================
+
 alias re="source ~/.zshenv && source ~/.zshrc"
 
 alias via="edit_config ~/.custom/.zsh_aliases"
@@ -33,8 +36,17 @@ alias viem="edit_config ~/.sync/etc/zshenv"
 alias virm="edit_config ~/.sync/etc/zshrc"
 alias vivm="edit_config ~/.sync/etc/vimrc"
 
+# ============================================================================
 # global aliases
+# ============================================================================
+
 alias -g ...="../.."
 alias -g ....="../../.."
+
+# ============================================================================
+# named directories
+# ============================================================================
+
+hash -d sync=~/.sync
 
 # vim: ft=zsh
