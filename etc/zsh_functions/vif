@@ -1,0 +1,10 @@
+# vim:ft=zsh
+
+vif() {
+    if [[ -z $1 ]]; then
+        print "ERROR: must specify function to edit"
+        return 1
+    else
+        vi ~/.custom/.zsh_functions/$1
+    fi
+}
