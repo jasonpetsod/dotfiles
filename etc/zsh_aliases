@@ -21,7 +21,7 @@ if [[ -f /etc/debian_version ]]; then
 fi
 
 # dotfile management
-alias re="source ~/.zshrc"
+alias re="source ~/.zshenv && source ~/.zshrc"
 
 alias via="edit_config ~/.custom/.zsh_aliases"
 alias vie="edit_config ~/.custom/.zshenv"
