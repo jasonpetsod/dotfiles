@@ -1,0 +1,4 @@
+# vim:ft=zsh
+
+autoload precmd
+autoload edit_config

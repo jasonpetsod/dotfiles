@@ -1,0 +1,42 @@
+alias ls="ls -F --color=auto"
+alias l="ls -la"
+alias ltr="l -tr"
+
+alias history="history -E"
+alias h="history"
+alias j="jobs"
+
+alias wg="whois -h whois.geektools.com"
+alias wa="whois -h whois.arin.net"
+
+alias bc="bc -q ~/.bcrc"
+alias getkey="gpg --keyserver pgpkeys.mit.edu --recv-key"
+alias psa="ps aux"
+
+# Debian specific
+if [[ -f /etc/debian_version ]]; then
+    alias agi="sudo apt-get install"
+    alias acs="apt-cache -n search"
+    alias ach="apt-cache show"
+fi
+
+# dotfile management
+alias re="source ~/.zshrc"
+
+alias via="edit_config ~/.custom/.zsh_aliases"
+alias vie="edit_config ~/.custom/.zshenv"
+alias vif="edit_config ~/.custom/.zsh_functions_autoload"
+alias vir="edit_config ~/.custom/.zshrc"
+alias viv="edit_config ~/.custom/.vimrc"
+
+alias viam="edit_config ~/.sync/etc/zsh_aliases"
+alias viem="edit_config ~/.sync/etc/zshenv"
+alias vifm="edit_config ~/.sync/etc/zsh_functions_autoload"
+alias virm="edit_config ~/.sync/etc/zshrc"
+alias vivm="edit_config ~/.sync/etc/vimrc"
+
+# global aliases
+alias -g ...="../.."
+alias -g ....="../../.."
+
+# vim: ft=zsh

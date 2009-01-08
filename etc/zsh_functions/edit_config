@@ -1,0 +1,6 @@
+# vim:ft=zsh
+
+edit_config() {
+    vi $1
+    re
+}

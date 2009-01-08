@@ -1,0 +1,72 @@
+# ============================================================================
+# general options
+# ============================================================================
+
+setopt auto_cd
+setopt cdable_vars
+setopt correct
+setopt no_flow_control
+setopt interactive_comments
+setopt globdots
+setopt nobeep
+setopt noclobber
+
+bindkey -v
+
+# ============================================================================
+# completion
+# ============================================================================
+
+setopt noautomenu
+setopt nomenucomplete
+setopt list_rows_first
+
+autoload compinit; compinit
+
+# ============================================================================
+# history
+# ============================================================================
+
+HISTSIZE=500
+SAVEHIST=500
+HISTFILE=~/.history
+
+setopt extended_history
+setopt inc_append_history
+setopt hist_allow_clobber
+setopt hist_ignore_all_dups
+setopt hist_no_store
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt share_history
+
+# ============================================================================
+# prompt
+# ============================================================================
+
+setopt prompt_subst
+
+autoload colors; colors
+
+PS1="%{${fg_bold[white]}%}%m %40<...<%~ %# "
+RPS1="%(?..%{${fg_bold[red]}%}%? )%(1j.%{${fg_bold[yellow]}%}%j .)%{${fg_bold[blue]}%}%!%{${fg_no_bold[default]}%}"
+
+# ============================================================================
+# aliases
+# ============================================================================
+
+source ~/.zsh_aliases
+
+if [[ -e ~/.custom/.zsh_aliases ]]; then
+    source ~/.custom/.zsh_aliases
+fi
+
+# ============================================================================
+# functions
+# ============================================================================
+
+source ~/.zsh_functions_autoload
+
+if [[ -e ~/.custom/.zsh_functions_autoload ]]; then
+    source ~/.custom/.zsh_functions_autoload 
+fi

@@ -1,0 +1,16 @@
+typeset -U path
+path=(~/bin /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin)
+
+typeset -U fpath
+fpath=(~/.custom/.zsh_functions ~/.zsh_functions $fpath)
+
+export EDITOR="vim"
+export VISUAL="vim"
+
+export PAGER="less"
+export LESS="-e"
+
+export GREP_OPTIONS="--color=auto"
+
+export TZ="America/Chicago"
+export LC_ALL="POSIX"

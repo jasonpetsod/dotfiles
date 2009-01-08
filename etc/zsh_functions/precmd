@@ -1,0 +1,8 @@
+# vim:ft=zsh
+
+precmd() {
+    if [[ $TERM = "screen" ]]; then
+        # set screen title to current path (truncated to 20 chars)
+        ~/bin/st "$(print -P "%20<*<%~")"
+    fi
+}
