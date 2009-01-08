@@ -67,8 +67,8 @@ fi
 
 # autoload functions from ~/.custom/.zsh_functions (if it exists)
 if [[ -d ~/.custom/.zsh_functions ]]; then
-    autoload ${fpath[1]}/*(:t)
+    autoload -U ${fpath[1]}/*(:t)
 fi
 
 # autoload functions from ~/.zsh_functions
-autoload ${fpath[2]}/*(:t)
+autoload -U ${fpath[2]}/*(:t)
