@@ -61,3 +61,9 @@ fi
 if [ "$TERM" = "screen" ]; then
     PROMPT_COMMAND='st "`bt`"'
 fi
+
+# SSH agent forwarding for all shells
+auth_sock=$HOME/.ssh/auth-sock
+if [ -z "`ps aux | grep ssh-agent | grep -v grep`" -a -L "$auth_sock" ]; then
+    export SSH_AUTH_SOCK=$auth_sock
+fi
