@@ -1,0 +1,15 @@
+# vim:st=zsh
+
+# find and edit the hgrc of the specified repository
+vihg() {
+    if [[ -n $1 ]]; then
+        root=$1
+    else
+        root=$(hg root)
+        if [[ $? != 0 ]]; then
+            return 1
+        fi
+    fi
+
+    vi $root/.hg/hgrc
+}
