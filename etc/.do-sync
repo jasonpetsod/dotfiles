@@ -10,7 +10,7 @@ for f in `ls -1 $THIS`; do
 
     full_f=$THIS/$f
     
-    ln -sf $full_f $DEST/.$f
+    ln -sfT $full_f $DEST/.$f
 done
 
 # make sure the custom (local to host) config dir exists
