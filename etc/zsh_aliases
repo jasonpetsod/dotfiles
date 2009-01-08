@@ -25,13 +25,11 @@ alias re="source ~/.zshrc"
 
 alias via="edit_config ~/.custom/.zsh_aliases"
 alias vie="edit_config ~/.custom/.zshenv"
-alias vif="edit_config ~/.custom/.zsh_functions_autoload"
 alias vir="edit_config ~/.custom/.zshrc"
 alias viv="edit_config ~/.custom/.vimrc"
 
 alias viam="edit_config ~/.sync/etc/zsh_aliases"
 alias viem="edit_config ~/.sync/etc/zshenv"
-alias vifm="edit_config ~/.sync/etc/zsh_functions_autoload"
 alias virm="edit_config ~/.sync/etc/zshrc"
 alias vivm="edit_config ~/.sync/etc/vimrc"
 
