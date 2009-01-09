@@ -13,8 +13,7 @@ alias bc="bc -q ~/.bcrc"
 alias getkey="gpg --keyserver pgpkeys.mit.edu --recv-key"
 alias psa="ps aux"
 
-# Debian specific
-if [[ -f /etc/debian_version ]]; then
+if [[ $DEBIAN_HOST ]]; then
     alias agi="sudo apt-get install"
     alias acs="apt-cache -n search"
     alias ach="apt-cache show"
