@@ -1,0 +1,17 @@
+# vim:ft=zsh
+
+svc() {
+    if [[ $DEBIAN_HOST -ne 1 ]]; then
+        echo "ERROR: this is not a Debian host" >&2
+        return 1
+    fi
+
+    if [[ -z "$1" ]]; then
+        echo "ERROR: service must be specified" >&2
+        return 1
+    fi
+
+    service=$1
+
+    /etc/init.d/$1 $*
+}
