@@ -72,3 +72,11 @@ fi
 
 # autoload functions from ~/.zsh_functions
 autoload -U ${fpath[2]}/*(:t)
+
+# ============================================================================
+# custom zshrc
+# ============================================================================
+
+if [[ -e ~/.custom/.zshrc ]]; then
+    source ~/.custom/.zshrc
+fi
