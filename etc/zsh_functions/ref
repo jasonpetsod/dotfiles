@@ -1,0 +1,13 @@
+# vim:ft=zsh
+
+ref() {
+    func=$1
+
+    if [[ -z $func ]]; then
+        echo "ERROR: a function must be specified" >&2
+        return 1
+    fi
+
+    unfunction $func
+    autoload $func
+}
