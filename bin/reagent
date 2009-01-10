@@ -57,7 +57,15 @@ if [ ! -O "$SOCKETS_FILE" ]; then
 fi
 
 # make sure sockets file is not readable/writable by anyone else
-if [ "`stat -c %a $SOCKETS_FILE`" != "600" ]; then
+case "`uname`" in
+    Linux)
+        stat="stat -c %a"
+        ;;
+    *)
+        stat="stat -f %Lp"
+esac
+
+if [ "`$stat $SOCKETS_FILE`" != "600" ]; then
     fatal "$SOCKETS_FILE is not permissioned correctly (should be 0600)"
 fi
 
@@ -128,10 +136,14 @@ case "$1" in
         del_socket "$2"
         ;;
     "pop")
-        # remove the newest socket; we could use "head -n -1 [...]", but
-        # consistency is better
+        # remove the newest socket
         socket=`tail -n 1 $SOCKETS_FILE`
-        del_socket "$socket"
+
+        if [ -z "$socket" ]; then
+            debug "no more sockets exist"
+        else
+            del_socket "$socket"
+        fi
         ;;
     "list")
         cat $SOCKETS_FILE
