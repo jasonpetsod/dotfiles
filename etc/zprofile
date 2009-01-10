@@ -1,0 +1,17 @@
+# vim:ft=zsh
+
+if [[ -e ~/.custom/.ssh-agent-host ]]; then
+    if [[ -z "`ps aux | grep ssh-agent | grep -v grep`" ]]; then
+        print "NOTICE: ssh-agent is not running; ~/bin/start-ssh-agent to correct" >&2
+    fi
+else
+    # if the agent is being forwarded (and not to be run on the local host),
+    # allow all sessions to also use this (forwarded) agent instance
+    if [[ -n "$SSH_AUTH_SOCK" ]]; then
+        ~/bin/reagent add $SSH_AUTH_SOCK
+    fi
+
+    export SSH_AUTH_SOCK_FORWARDED=$SSH_AUTH_SOCK
+fi
+
+export SSH_AUTH_SOCK=$HOME/.ssh/auth-sock

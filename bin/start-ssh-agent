@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+# store original socket (hopefully the reagent symlink)
+orig_sock=$SSH_AUTH_SOCK
+
+# get a real ssh agent socket
+eval `ssh-agent -t 3600`
+~/bin/reagent add $SSH_AUTH_SOCK
+
+# restore reagent symlink
+export SSH_AUTH_SOCK=$orig_sock
+
+# add the ssh identities now so OS X's hooks don't bother us
+ssh-add
