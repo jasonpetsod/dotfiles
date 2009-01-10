@@ -12,6 +12,7 @@ svc() {
     fi
 
     service=$1
+    shift
 
-    /etc/init.d/$1 $*
+    echo /etc/init.d/$service $*
 }
