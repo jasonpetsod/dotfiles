@@ -95,7 +95,7 @@ function del_socket() {
     socket=`tail -n 1 $SOCKETS_FILE`
     while [ ! -S $socket ]; do
         tmp="$SOCKETS_FILE.new"
-        head -n -1 $SOCKETS_FILE > $tmp
+        grep -v "^$socket$" $SOCKETS_FILE > $tmp
         mv -f $tmp $SOCKETS_FILE
 
         debug "removed stale socket $socket"
