@@ -93,7 +93,14 @@ function del_socket() {
 
     # get the new active socket (remove stale sockets in the process)
     socket=`tail -n 1 $SOCKETS_FILE`
-    while [ ! -S $socket ]; do
+    (SSH_AUTH_SOCK=$socket; ssh-add -l 1> /dev/null 2>&1)
+    retcode=$?
+
+    while [ ! -S "$socket" -o "$retcode" != "0" ]; do
+        if [ -z "$socket" ]; then
+            break
+        fi
+
         tmp="$SOCKETS_FILE.new"
         grep -v "^$socket$" $SOCKETS_FILE > $tmp
         mv -f $tmp $SOCKETS_FILE
@@ -101,6 +108,9 @@ function del_socket() {
         debug "removed stale socket $socket"
 
         socket=`tail -n 1 $SOCKETS_FILE`
+
+        (SSH_AUTH_SOCK=$socket; ssh-add -l 1> /dev/null 2>&1)
+        retcode=$?
     done
 
     # if there is no socket, remove the symlink
