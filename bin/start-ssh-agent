@@ -4,7 +4,7 @@
 orig_sock=$SSH_AUTH_SOCK
 
 # get a real ssh agent socket
-eval `ssh-agent -t 3600`
+eval `ssh-agent -t 36000`
 ~/bin/reagent add $SSH_AUTH_SOCK
 
 # restore reagent symlink
