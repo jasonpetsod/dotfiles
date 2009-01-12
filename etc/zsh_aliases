@@ -5,6 +5,7 @@ alias ltr="l -tr"
 alias history="history -E"
 alias h="history"
 alias j="jobs"
+alias r="reset"
 
 alias wg="whois -h whois.geektools.com"
 alias wa="whois -h whois.arin.net"
