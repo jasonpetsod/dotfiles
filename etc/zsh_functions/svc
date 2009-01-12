@@ -14,5 +14,5 @@ svc() {
     service=$1
     shift
 
-    echo /etc/init.d/$service $*
+    sudo /etc/init.d/$service $*
 }
