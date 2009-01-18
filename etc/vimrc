@@ -1,6 +1,5 @@
 set ruler
 set showcmd
-set incsearch
 
 syn on
 set nocompatible
@@ -9,8 +8,13 @@ set nowritebackup
 set background=dark
 set backspace=indent,eol,start
 set foldmethod=marker 
+
+" search options
+set incsearch
+set ignorecase
 set smartcase
 
+" whitespace formatting
 set autoindent
 set tabstop=4
 set shiftwidth=4
@@ -29,7 +33,7 @@ if &term == "screen"
     set t_ts=k
     set t_fs=\
     set title
-    let &titlestring = system("shorthost") . " " .  expand("%:t")
+    let &titlestring = expand("%:t")
 endif
 
 filetype plugin indent on
