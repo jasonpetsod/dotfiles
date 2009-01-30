@@ -195,6 +195,12 @@ augroup tex
     au! FileType tex call Commenting('%')
 augroup END
 
+" mail messages
+augroup mail
+    au! FileType mail set notitle
+    au! FileType mail set textwidth=76
+augroup END
+
 " Perl scripts
 iab pl! <ESC>:r ~/.vim/perl_skel<RETURN>:set ft=perl<RETURN>ggdd/%start%/<RETURN><ESC>ddO
 
