@@ -1,18 +1,23 @@
-set ruler
-set showcmd
-
-syn on
 set nocompatible
+
+" backups are lame
 set nobackup
 set nowritebackup
+
+" UI
+set ruler
+set showcmd
 set background=dark
+set wildmode=list:longest
 set backspace=indent,eol,start
-set foldmethod=marker 
+set scrolloff=3
+syntax on
 
 " search options
 set incsearch
 set ignorecase
 set smartcase
+set report=0
 
 " whitespace formatting
 set autoindent
@@ -22,49 +27,204 @@ set shiftround
 set nowrap
 set expandtab
 set smarttab
-set tw=78
+set textwidth=78
+set list
+set listchars=tab:>-,trail:.
+set nojoinspaces
+filetype plugin indent on
 
-set pastetoggle=<F7>
-
+" spelling
 set spelllang=en_us,en_gb
 set spellfile=~/.spell.add
 
+let @b = "============================================================================"
+
+" ============================================================================
+" GNU screen titles
+" ============================================================================
+
 if &term == "screen"
+    function! SetTitle(s)
+        let s = a:s
+
+        if strlen(s) == 0
+            let s = "(no name)"
+        endif
+
+        let &titlestring = s
+    endfunction
+
     set t_ts=k
     set t_fs=\
     set title
-    let &titlestring = expand("%:t")
+
+    " actually set the title
+    call SetTitle(expand("%:t"))
+
+    " make sure title changes if filename changes
+    au! BufWritePost * call SetTitle(expand("%:t"))
 endif
 
-filetype plugin indent on
-
-" add shell/Perl comments
-vnoremap ] :s/^/#/<RETURN>
-vnoremap [ :s/^#//<RETURN>
+" ============================================================================
+" mappings/abbreviations
+" ============================================================================
 
 " remappings for my silly mistakes
 imap [:w <ESC>:w<RETURN>
 imap [:W <ESC>:w<RETURN>
-command W w
-command Q q
-command WQ wq
-command QW wq
-
-" Perl abbreviations
-iab pl! <ESC>:r ~/.vim/perl_skel<RETURN>:set filetype=perl<RETURN>ggdd/%start%/<RETURN><ESC>ddO
-iab uddmp use Data::Dumper;<RETURN>print Dumper
-iab ddmp print Dumper
-
-" LaTeX files
-au! BufNewFile,BufRead *.tex set ft=tex 
-au! FileType tex nnoremap <C-t> :w!<RETURN>:!pdflatex "%"<RETURN> | set spell
-
-" text files
-au! FileType text set spell
-
-" run Makefile
-nnoremap <C-e> :w!<RETURN>:!make<RETURN>
+imap {:w <ESC>:w<RETURN>
+imap {:W <ESC>:w<RETURN>
+cabbrev W w
+cabbrev Q q
 
 " paragraph reformatting
 vnoremap Q gq
 nnoremap Q gqap
+
+" run make
+nnoremap <C-e> :w!<RETURN>:make<RETURN><RETURN>
+
+" paste/nopaste toggle
+set pastetoggle=<F7>
+
+" spell/nospell toggle
+nnoremap <SILENT> <F6> :set nospell!<RETURN>
+inoremap <SILENT> <F6> <ESC>:set nospell!<RETURN>a
+
+
+let mapleader = ","
+
+" quicker :w, :wq
+map <LEADER>, :w<RETURN>
+map <LEADER>. :wq<RETURN>
+
+" export syntax-highlighted file
+map <LEADER>H :runtime! syntax/2html.vim<RETURN>
+
+" reload/edit vimrc
+map <LEADER>v :split ~/.vimrc<RETURN>
+map <LEADER>r :source ~/.vimrc<RETURN>
+
+" ============================================================================
+" commenting
+" ============================================================================
+
+" set up commenting
+function! Commenting(comment_char, ...)
+    if exists("a:1")
+        " block commenting
+        let g:block_commenting = 1
+        let g:comment_char = a:comment_char
+        let g:end_comment_char = a:1
+    else
+        " line commenting
+        let g:block_commenting = 0
+        let g:comment_char = a:comment_char
+
+    endif
+
+    vnoremap ] :call Comment()<RETURN>
+    vnoremap [ :call Uncomment()<RETURN>
+
+    let @a = g:comment_char . " " . @b . "\n"
+endfunction
+
+function! Comment() range
+    if g:block_commenting
+        " escape regex metacharacters
+        let comment_char = escape(g:comment_char, "*")
+        let end_comment_char = escape(g:end_comment_char, "*")
+
+        " start comment block
+        let line = getline(a:firstline)
+        call setline(a:firstline, substitute(line, '^', comment_char, ''))
+
+        " end comment block
+        let line = getline(a:lastline)
+        call setline(a:lastline, substitute(line, '$', end_comment_char, ''))
+    else
+        " line commenting
+        execute "'<,'>s@^@" . g:comment_char . "@e"
+    endif
+endfunction
+
+function! Uncomment() range
+    if g:block_commenting
+        " escape regex metacharacters
+        let comment_char = escape(g:comment_char, "*")
+        let end_comment_char = escape(g:end_comment_char, "*")
+
+        " remove start
+        let line = getline(a:firstline)
+        call setline(a:firstline, substitute(line, '^' . comment_char, '', ''))
+
+        " remove end
+        let line = getline(a:lastline)
+        call setline(a:lastline, substitute(line, end_comment_char . '$', '', ''))
+    else
+        " line commenting
+        execute "'<,'>s@^" . g:comment_char . "@@e"
+    endif
+endfunction
+
+" ============================================================================
+" filetype-specific
+" ============================================================================
+
+" C files
+augroup c
+    au! FileType c call Commenting('/*', '*/')
+augroup END
+
+" CSS files
+augroup css
+    au! FileType css call Commenting('/*', '*/')
+augroup END
+
+" HTML files
+augroup html
+    au! FileType html call Commenting('<!--', '-->')
+augroup END
+
+" LaTeX files
+augroup tex
+    au! BufNewFile,BufReadPost *.tex set ft=tex
+
+    au! FileType tex nnoremap <C-t> :w!<RETURN>:!pdflatex "%"<RETURN>
+    au! FileType tex set spell
+    au! FileType tex call Commenting('%')
+augroup END
+
+" Perl scripts
+iab pl! <ESC>:r ~/.vim/perl_skel<RETURN>:set ft=perl<RETURN>ggdd/%start%/<RETURN><ESC>ddO
+
+augroup perl
+    au! FileType perl iab uddmp use Data::Dumper;<RETURN>print Dumper
+    au! FileType perl iab ddmp print Dumper
+    au! FileType perl call Commenting('#')
+augroup END
+
+" PHP scripts
+augroup php
+    au! FileType php call Commenting('//')
+augroup END
+
+" Python scripts
+augroup python
+    au! FileType python call Commenting('#')
+augroup END
+
+" shell scripts
+augroup shell
+    au! FileType sh call Commenting('#')
+augroup END
+
+" text files
+augroup text
+    au! FileType text set spell
+augroup END
+
+" vim scripts
+augroup vim
+    au! FileType vim call Commenting('"')
+augroup END
