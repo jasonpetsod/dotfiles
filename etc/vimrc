@@ -86,7 +86,7 @@ vnoremap Q gq
 nnoremap Q gqap
 
 " run make
-nnoremap <C-e> :w!<RETURN>:make<RETURN><RETURN>
+nnoremap <C-e> :w!<RETURN>:make<RETURN>
 
 " paste/nopaste toggle
 set pastetoggle=<F7>
@@ -177,64 +177,82 @@ endfunction
 
 " C files
 augroup c
-    au! FileType c call Commenting('/*', '*/')
+    au!
+    au FileType c call Commenting('/*', '*/')
 augroup END
 
 " CSS files
 augroup css
-    au! FileType css call Commenting('/*', '*/')
+    au!
+    au FileType css call Commenting('/*', '*/')
 augroup END
 
 " HTML files
 augroup html
-    au! FileType html call Commenting('<!--', '-->')
+    au!
+    au FileType html call Commenting('<!--', '-->')
 augroup END
 
 " LaTeX files
 augroup tex
-    au! BufNewFile,BufReadPost *.tex set ft=tex
+    au!
+    au BufNewFile,BufReadPost *.tex set ft=tex
 
-    au! FileType tex nnoremap <C-t> :w!<RETURN>:!pdflatex "%"<RETURN>
-    au! FileType tex set spell
-    au! FileType tex call Commenting('%')
+    au FileType tex nnoremap <C-t> :w!<RETURN>:!pdflatex "%"<RETURN>
+    au FileType tex set spell
+    au FileType tex call Commenting('%')
+augroup END
+
+" Makefiles
+augroup makefile
+    au!
+    au FileType make call Commenting('#')
+    au FileType make set nolist
 augroup END
 
 " mail messages
 augroup mail
-    au! FileType mail set notitle
-    au! FileType mail set textwidth=76
+    au!
+    au FileType mail set notitle
+    au FileType mail set textwidth=76
 augroup END
 
 " Perl scripts
 iab pl! <ESC>:r ~/.vim/perl_skel<RETURN>:set ft=perl<RETURN>ggdd/%start%/<RETURN><ESC>ddO
 
 augroup perl
-    au! FileType perl iab uddmp use Data::Dumper;<RETURN>print Dumper
-    au! FileType perl iab ddmp print Dumper
-    au! FileType perl call Commenting('#')
+    au!
+    au FileType perl iab uddmp use Data::Dumper;<RETURN>print Dumper
+    au FileType perl iab ddmp print Dumper
+    au FileType perl call Commenting('#')
 augroup END
 
 " PHP scripts
 augroup php
-    au! FileType php call Commenting('//')
+    au!
+    au FileType php call Commenting('//')
 augroup END
 
 " Python scripts
 augroup python
-    au! FileType python call Commenting('#')
+    au!
+    au FileType python call Commenting('#')
 augroup END
 
 " shell scripts
 augroup shell
-    au! FileType sh call Commenting('#')
+    au!
+    au FileType sh call Commenting('#')
 augroup END
 
 " text files
 augroup text
-    au! FileType text set spell
+    au!
+    au FileType text set spell
 augroup END
 
 " vim scripts
 augroup vim
-    au! FileType vim call Commenting('"')
+    au!
+    au FileType vim call Commenting('"')
 augroup END
