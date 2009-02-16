@@ -10,7 +10,7 @@ set showcmd
 set background=dark
 set wildmode=list:longest
 set backspace=indent,eol,start
-set scrolloff=3
+set scrolloff=1
 set hidden
 syntax on
 
