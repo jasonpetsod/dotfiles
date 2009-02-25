@@ -34,6 +34,10 @@ set listchars=tab:>-,trail:.
 set nojoinspaces
 filetype plugin indent on
 
+" modelines
+set modeline
+set modelines=5
+
 " spelling
 set spelllang=en_us,en_gb
 set spellfile=~/.spell.add
