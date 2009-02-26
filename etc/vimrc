@@ -185,6 +185,13 @@ augroup c
     au FileType c call Commenting('/*', '*/')
 augroup END
 
+" C header files
+augroup cpp
+    au!
+    au FileType cpp call Commenting('/*', '*/')
+    au FileType cpp map <LEADER>o :set ft=objc<RETURN>
+augroup END
+
 " CSS files
 augroup css
     au!
@@ -219,6 +226,14 @@ augroup mail
     au!
     au FileType mail set notitle
     au FileType mail set textwidth=76
+augroup END
+
+" Objective-C files
+augroup objc
+    au!
+    au BufNewFile,BufReadPost *.m set ft=objc
+    au FileType objc call Commenting('/*', '*/')
+    au FileType objc set cindent
 augroup END
 
 " Perl scripts
