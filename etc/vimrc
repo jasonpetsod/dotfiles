@@ -29,7 +29,6 @@ set nowrap
 set expandtab
 set smarttab
 set textwidth=78
-set list
 set listchars=tab:>-,trail:.
 set nojoinspaces
 filetype plugin indent on
