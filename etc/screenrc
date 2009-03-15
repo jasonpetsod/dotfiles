@@ -8,7 +8,7 @@ shell zsh
 
 attrcolor B "wR"
 
-caption always '%{ck}%D %{yk}%d-%M %{gk}%0c %= %{Mk}%H %{wk}%?%-Lw%?%{kG}%n*%f %t%?(%u)%?%{wk}%?%+Lw'
+caption always '%{Ck}%D %{Yk}%d-%M %{Gk}%0c %= %{Mk}%H %{wk}%?%-Lw%?%{kG}%n*%f %t%?(%u)%?%{wk}%?%+Lw'
 
 bind |
 bind s
