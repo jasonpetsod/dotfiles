@@ -25,6 +25,11 @@ if [[ $DEBIAN_HOST -eq 1 ]]; then
     alias ach="apt-cache show"
 fi
 
+# OS X-specific
+if [[ $OSX_HOST -eq 1 ]]; then
+    alias pi="sudo port -d install"
+fi
+
 # noglob
 alias nscp="noglob scp"
 alias nrsync="noglob rsync"
