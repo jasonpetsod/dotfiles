@@ -49,7 +49,7 @@ setopt prompt_subst
 autoload colors; colors
 
 PS1="%{${fg_bold[white]}%}%m %40<...<%~ %#%{${fg_no_bold[default]}%} "
-RPS1="%(?..%{${fg_bold[red]}%}%? )%(1j.%{${fg_bold[yellow]}%}%j .)%{${fg_bold[blue]}%}%!%{${fg_no_bold[default]}%}"
+RPS1="%(?..%{${fg_bold[red]}%}%? )%(1j.%{${fg_bold[yellow]}%}%j .)"
 
 # ============================================================================
 # variables
