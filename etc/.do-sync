@@ -3,6 +3,12 @@
 THIS=$SYNCROOT/etc
 DEST=$DESTROOT
 
+if [ "`uname`" = "Darwin" ]; then
+    LN=gln
+else
+    LN=ln
+fi
+
 for f in `ls -1 $THIS`; do
     if [ "$f" == "RCS-disabled" ]; then
         continue
@@ -10,7 +16,7 @@ for f in `ls -1 $THIS`; do
 
     full_f=$THIS/$f
     
-    ln -sfT $full_f $DEST/.$f
+    $LN -sfT $full_f $DEST/.$f
 done
 
 # make sure the custom (local to host) config dir exists
