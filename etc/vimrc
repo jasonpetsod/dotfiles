@@ -8,7 +8,7 @@ set nowritebackup
 set ruler
 set showcmd
 set background=dark
-set wildmode=list:longest
+set wildmode=list,longest
 set backspace=indent,eol,start
 set scrolloff=1
 set hidden
@@ -41,7 +41,8 @@ set modelines=5
 set spelllang=en_us,en_gb
 set spellfile=~/.spell.add
 
-let @b = "============================================================================"
+" plugin options
+let g:EnhCommentifyUserBindings = 'yes'
 
 " ============================================================================
 " GNU screen titles
@@ -98,6 +99,8 @@ set pastetoggle=<F7>
 nnoremap <SILENT> <F6> :set nospell!<RETURN>
 inoremap <SILENT> <F6> <ESC>:set nospell!<RETURN>a
 
+" make Shift-Tab work
+map <Esc>[Z <S-TAB>
 
 let mapleader = ","
 
@@ -112,96 +115,26 @@ map <LEADER>H :runtime! syntax/2html.vim<RETURN>
 map <LEADER>v :split ~/.vimrc<RETURN>
 map <LEADER>r :source ~/.vimrc<RETURN>
 
-" ============================================================================
+" taglist
+map <silent> <LEADER>t :TlistToggle<RETURN>
+
 " commenting
-" ============================================================================
+vnoremap <silent> ] :call EnhancedCommentify('yes', 'comment')<RETURN>
+vnoremap <silent> [ :call EnhancedCommentify('no', 'decomment')<RETURN>
 
-" set up commenting
-function! Commenting(comment_char, ...)
-    if exists("a:1")
-        " block commenting
-        let g:block_commenting = 1
-        let g:comment_char = a:comment_char
-        let g:end_comment_char = a:1
-    else
-        " line commenting
-        let g:block_commenting = 0
-        let g:comment_char = a:comment_char
-
-    endif
-
-    vnoremap ] :call Comment()<RETURN>
-    vnoremap [ :call Uncomment()<RETURN>
-
-    let @a = g:comment_char . " " . @b . "\n"
-endfunction
-
-function! Comment() range
-    if g:block_commenting
-        " escape regex metacharacters
-        let comment_char = escape(g:comment_char, "*")
-        let end_comment_char = escape(g:end_comment_char, "*")
-
-        " start comment block
-        let line = getline(a:firstline)
-        call setline(a:firstline, substitute(line, '^', comment_char, ''))
-
-        " end comment block
-        let line = getline(a:lastline)
-        call setline(a:lastline, substitute(line, '$', end_comment_char, ''))
-    else
-        " line commenting
-        execute "'<,'>s@^@" . g:comment_char . "@e"
-    endif
-endfunction
-
-function! Uncomment() range
-    if g:block_commenting
-        " escape regex metacharacters
-        let comment_char = escape(g:comment_char, "*")
-        let end_comment_char = escape(g:end_comment_char, "*")
-
-        " remove start
-        let line = getline(a:firstline)
-        call setline(a:firstline, substitute(line, '^' . comment_char, '', ''))
-
-        " remove end
-        let line = getline(a:lastline)
-        call setline(a:lastline, substitute(line, end_comment_char . '$', '', ''))
-    else
-        " line commenting
-        execute "'<,'>s@^" . g:comment_char . "@@e"
-    endif
-endfunction
+" buffers
+map <silent> <LEADER><TAB> :bnext<RETURN>
+map <silent> <LEADER>` :bprev<RETURN>
+map <silent> <LEADER>d :bdelete<RETURN>
+map <silent> <LEADER>b :TMiniBufExplorer<RETURN>
 
 " ============================================================================
 " filetype-specific
 " ============================================================================
 
-" C files
-augroup c
-    au!
-    au FileType c call Commenting('/*', '*/')
-augroup END
-
-" C header files
-augroup cpp
-    au!
-    au FileType cpp call Commenting('/*', '*/')
-    au FileType cpp map <LEADER>o :set ft=objc<RETURN>
-augroup END
-
-" CSS files
-augroup css
-    au!
-    au FileType css call Commenting('/*', '*/')
-augroup END
-
-" HTML files
-augroup html
-    au!
-    au FileType html call Commenting('<!--', '-->')
-augroup END
+" FIXME
+" let @a = g:comment_char . " " . @b . "\n"
+" let @b = "============================================================================"
 
 " LaTeX files
 augroup tex
@@ -210,14 +143,6 @@ augroup tex
 
     au FileType tex nnoremap <C-t> :w!<RETURN>:!pdflatex "%"<RETURN>
     au FileType tex set spell
-    au FileType tex call Commenting('%')
-augroup END
-
-" Makefiles
-augroup makefile
-    au!
-    au FileType make call Commenting('#')
-    au FileType make set nolist
 augroup END
 
 " mail messages
@@ -231,7 +156,6 @@ augroup END
 augroup objc
     au!
     au BufNewFile,BufReadPost *.m set ft=objc
-    au FileType objc call Commenting('/*', '*/')
     au FileType objc set cindent
 augroup END
 
@@ -242,35 +166,10 @@ augroup perl
     au!
     au FileType perl iab uddmp use Data::Dumper;<RETURN>print Dumper
     au FileType perl iab ddmp print Dumper
-    au FileType perl call Commenting('#')
-augroup END
-
-" PHP scripts
-augroup php
-    au!
-    au FileType php call Commenting('//')
-augroup END
-
-" Python scripts
-augroup python
-    au!
-    au FileType python call Commenting('#')
-augroup END
-
-" shell scripts
-augroup shell
-    au!
-    au FileType sh call Commenting('#')
 augroup END
 
 " text files
 augroup text
     au!
     au FileType text set spell
-augroup END
-
-" vim scripts
-augroup vim
-    au!
-    au FileType vim call Commenting('"')
 augroup END
