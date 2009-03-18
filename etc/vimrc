@@ -126,7 +126,7 @@ vnoremap <silent> [ :call EnhancedCommentify('no', 'decomment')<RETURN>
 map <silent> <LEADER><TAB> :bnext<RETURN>
 map <silent> <LEADER>` :bprev<RETURN>
 map <silent> <LEADER>d :bdelete<RETURN>
-map <silent> <LEADER>b :TMiniBufExplorer<RETURN>
+map <silent> <LEADER>b :ls!<RETURN>
 
 " split alternate file
 map <silent> <LEADER>a :call AlternateFile('h')<RETURN>
@@ -153,6 +153,7 @@ augroup mail
     au!
     au FileType mail set notitle
     au FileType mail set textwidth=76
+    au FileType mail set spell
 augroup END
 
 " Objective-C files
