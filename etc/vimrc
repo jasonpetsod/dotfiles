@@ -139,6 +139,11 @@ map <silent> <LEADER>a :call AlternateFile('h')<RETURN>
 " let @a = g:comment_char . " " . @b . "\n"
 " let @b = "============================================================================"
 
+augroup c
+    au!
+    au BufNewFile,BufReadPost *.h set ft=c
+augroup END
+
 " LaTeX files
 augroup tex
     au!
