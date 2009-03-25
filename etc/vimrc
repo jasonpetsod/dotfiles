@@ -149,7 +149,7 @@ augroup tex
     au!
     au BufNewFile,BufReadPost *.tex set ft=tex
 
-    au FileType tex nnoremap <C-t> :w!<RETURN>:!pdflatex "%"<RETURN>
+    au FileType tex nnoremap <C-t> :w!<RETURN>:!pdflatex -interaction=nonstopmode "%"<RETURN>
     au FileType tex set spell
 augroup END
 
