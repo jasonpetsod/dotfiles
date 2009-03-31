@@ -1,0 +1,38 @@
+set activate=quickmark
+set guioptions=rbN
+set shell=zsh
+set wildmode=list:longest
+set newtab=all
+
+" ============================================================================
+" mappings/abbreviations
+" ============================================================================
+
+let mapleader = ","
+
+noremap <silent> <LEADER>r :source ~/.vimperatorrc<CR>
+
+noremap <silent> <LEADER>h :nohlsearch<CR>
+map <LEADER>t :tabopen! 
+
+" del.icio.us
+noremap <silent> <LEADER>d <C-v><C-d>
+noremap <silent> <LEADER>y :emenu Delicious.Jump To Tag<CR>
+
+" quick searches
+map w :tabopen w 
+map W :open w 
+map e :tabopen g 
+map E :open g 
+
+" lazy tab navigating
+map g4 g$
+map g6 g^
+
+" ============================================================================
+" autocommands
+" ============================================================================
+
+autocmd LocationChange .* :js modes.passAllKeys = /www\.google\.com\/reader\/view/.test(buffer.URL)
+
+" vim: set ft=vimperator:
