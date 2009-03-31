@@ -45,6 +45,20 @@ set spellfile=~/.spell.add
 let g:EnhCommentifyUserBindings = 'yes'
 
 " ============================================================================
+" GUI options
+" ============================================================================
+
+if has("gui_running")
+    colorscheme zenburn
+
+    " remove GUI elements
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
+endif
+
+" ============================================================================
 " GNU screen titles
 " ============================================================================
 
