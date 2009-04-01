@@ -1,8 +1,13 @@
+" don't automatically activate new tabs
 set activate=quickmark
 set guioptions=rbN
 set shell=zsh
 set wildmode=list:longest
 set newtab=all
+" only follow hints on <ENTER>
+set followhints=1
+" actual pattern is ";\s"
+set urlseparator=;\\s
 
 " ============================================================================
 " mappings/abbreviations
