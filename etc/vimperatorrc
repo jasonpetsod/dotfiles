@@ -30,12 +30,6 @@ noremap T :tabopen!
 noremap <silent> <LEADER>d <C-v><C-d>
 noremap <silent> <LEADER>y :emenu Delicious.Jump To Tag<CR>
 
-" quick searches
-map w :tabopen w 
-map W :open w 
-map e :tabopen g 
-map E :open g 
-
 " lazy tab navigating
 map g4 g$
 map g6 g^
