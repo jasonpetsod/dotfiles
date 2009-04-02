@@ -9,6 +9,10 @@ set followhints=1
 " actual pattern is ";\s"
 set urlseparator=;\\s
 
+" silence bells
+set visualbell
+highlight Bell display: none;
+
 " ============================================================================
 " mappings/abbreviations
 " ============================================================================
