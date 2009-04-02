@@ -156,6 +156,7 @@ map <silent> <LEADER>a :call AlternateFile('h')<RETURN>
 augroup c
     au!
     au BufNewFile,BufReadPost *.h set ft=c
+    au FileType c set wildignore=*.o
 augroup END
 
 " LaTeX files
