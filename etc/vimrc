@@ -175,7 +175,6 @@ augroup END
 augroup mail
     au!
     au FileType mail set notitle
-    au FileType mail set textwidth=76
     au FileType mail set spell
 augroup END
 
