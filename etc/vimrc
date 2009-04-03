@@ -47,6 +47,10 @@ let g:EnhCommentifyUserBindings = 'yes'
 " allow <LEADER>K and :Man to split man page
 runtime! ftplugin/man.vim
 
+" leaders
+let mapleader = ","
+let maplocalleader = ","
+
 " ============================================================================
 " GUI options
 " ============================================================================
@@ -118,8 +122,6 @@ inoremap <SILENT> <F6> <ESC>:set nospell!<RETURN>a
 
 " make Shift-Tab work
 map <Esc>[Z <S-TAB>
-
-let mapleader = ","
 
 " quicker :w, :wq
 map <LEADER>, :w<RETURN>
