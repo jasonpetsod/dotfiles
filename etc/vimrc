@@ -44,6 +44,9 @@ set spellfile=~/.spell.add
 " plugin options
 let g:EnhCommentifyUserBindings = 'yes'
 
+" allow <LEADER>K and :Man to split man page
+runtime! ftplugin/man.vim
+
 " ============================================================================
 " GUI options
 " ============================================================================
