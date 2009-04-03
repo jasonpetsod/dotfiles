@@ -44,4 +44,10 @@ map g6 g^
 
 autocmd LocationChange .* :js modes.passAllKeys = /www\.google\.com\/reader\/view/.test(buffer.URL)
 
+" ============================================================================
+" local options
+" ============================================================================
+
+source! ~/.custom/.vimperatorrc
+
 " vim: set ft=vimperator:
