@@ -35,8 +35,9 @@ noremap <silent> <LEADER>d <C-v><C-d>
 noremap <silent> <LEADER>y :emenu Delicious.Jump To Tag<CR>
 
 " lazy tab navigating
-map g4 g$
-map g6 g^
+noremap g4 g$
+noremap g6 g^
+noremap gr gT
 
 " ============================================================================
 " autocommands
