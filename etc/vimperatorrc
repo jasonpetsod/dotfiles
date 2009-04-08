@@ -51,4 +51,18 @@ autocmd LocationChange .* :js modes.passAllKeys = /www\.google\.com\/reader\/vie
 
 source! ~/.custom/.vimperatorrc
 
+" ============================================================================
+" stupidbar tweaks
+" ============================================================================
+
+set! places.frecency.bookmarkVisitBonus=1
+set! places.frecency.linkVisitBonus=0
+set! places.frecency.unvisitedBookmarkBonus=0
+set! places.frecency.unvisitedTypedBonus=0
+
+set! places.frecency.secondBucketWeight=50
+set! places.frecency.thirdBucketWeight=5
+set! places.frecency.fourthBucketWeight=0
+set! places.frecency.defaultBucketWeight=0
+
 " vim: set ft=vimperator:
