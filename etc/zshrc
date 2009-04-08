@@ -3,7 +3,6 @@
 # ============================================================================
 
 setopt auto_cd
-setopt cdable_vars
 setopt correct
 setopt no_flow_control
 setopt interactive_comments
