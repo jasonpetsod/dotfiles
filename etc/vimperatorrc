@@ -32,6 +32,7 @@ noremap T :tabopen!
 
 " del.icio.us
 noremap <silent> <LEADER>d <C-v><C-d>
+noremap <silent> <LEADER>D :emenu Delicious.Sign in<CR>
 noremap <silent> <LEADER>y :emenu Delicious.Jump To Tag<CR>
 
 " lazy tab navigating
