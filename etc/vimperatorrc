@@ -13,6 +13,9 @@ set urlseparator=;\\s
 set visualbell
 highlight Bell display: none;
 
+" always show tab bar
+set showtabline=2
+
 " ============================================================================
 " mappings/abbreviations
 " ============================================================================
