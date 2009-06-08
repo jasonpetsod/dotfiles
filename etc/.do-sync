@@ -5,6 +5,9 @@ DEST=$DESTROOT
 
 if [ "`uname`" = "Darwin" ]; then
     LN=gln
+elif [ "`uname`" = "SunOS" ]; then
+    echo "sun"
+    LN="gnu ln"
 else
     LN=ln
 fi

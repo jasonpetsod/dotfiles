@@ -5,6 +5,8 @@ DEST=$DESTROOT
 
 if [ "`uname`" = "Darwin" ]; then
     FIND=gfind
+elif [ "`uname`" = "SunOS" ]; then
+    FIND="gnu find"
 else
     FIND=find
 fi
