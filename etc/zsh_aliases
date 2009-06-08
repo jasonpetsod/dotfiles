@@ -41,15 +41,15 @@ alias nrsync="noglob rsync"
 
 alias re="source ~/.zshenv && source ~/.zshrc"
 
-alias via="edit_config ~/.custom/.zsh_aliases"
-alias vie="edit_config ~/.custom/.zshenv"
-alias vir="edit_config ~/.custom/.zshrc"
-alias viv="edit_config ~/.custom/.vimrc"
+alias via="vi ~/.custom/.zsh_aliases"
+alias vie="vi ~/.custom/.zshenv"
+alias vir="vi ~/.custom/.zshrc"
+alias viv="vi ~/.custom/.vimrc"
 
-alias viam="edit_config ~/.sync/etc/zsh_aliases"
-alias viem="edit_config ~/.sync/etc/zshenv"
-alias virm="edit_config ~/.sync/etc/zshrc"
-alias vivm="edit_config ~/.sync/etc/vimrc"
+alias viam="vi ~/.sync/etc/zsh_aliases"
+alias viem="vi ~/.sync/etc/zshenv"
+alias virm="vi ~/.sync/etc/zshrc"
+alias vivm="vi ~/.sync/etc/vimrc"
 
 # ============================================================================
 # global aliases
