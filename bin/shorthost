@@ -1,3 +1,9 @@
 #!/bin/sh
 
-cat /etc/hostname | cut -d. -f1
+if [ -f "/etc/hostname" ]; then
+    HOSTNAME=`cat /etc/hostname`
+else
+    HOSTNAME=`hostname`
+fi
+
+echo $HOSTNAME | cut -d. -f1
