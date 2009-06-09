@@ -105,6 +105,8 @@ imap {:w <ESC>:w<RETURN>
 imap {:W <ESC>:w<RETURN>
 cabbrev W w
 cabbrev Q q
+cabbrev Wq wq
+cabbrev WQ wq
 
 " paragraph reformatting
 vnoremap Q gq
