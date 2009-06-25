@@ -1,6 +1,6 @@
 " don't automatically activate new tabs
 set activate=quickmark
-set guioptions=rbN
+set guioptions=rb
 set shell=zsh
 set wildmode=list:longest
 set newtab=all
