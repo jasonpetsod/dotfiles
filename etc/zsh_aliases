@@ -38,6 +38,9 @@ alias nrsync="noglob rsync"
 # typos
 alias Vi="vi"
 
+# language documentation
+alias pd="pydoc"
+
 # ============================================================================
 # dotfile management
 # ============================================================================
