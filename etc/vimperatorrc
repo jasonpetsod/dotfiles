@@ -8,6 +8,8 @@ set newtab=all
 set followhints=1
 " actual pattern is ";\s"
 set urlseparator=;\\s
+" don't automatically search for "invalid" URLs
+set defsearch=
 
 " silence bells
 set visualbell
