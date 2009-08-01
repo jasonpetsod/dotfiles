@@ -1,5 +1,5 @@
 typeset -U path
-path=(~/bin /usr/local/bin /usr/bin /bin /usr/local/sbin /usr/sbin /sbin)
+path=(~/bin /opt/bin /usr/local/bin /usr/bin /bin /opt/sbin /usr/local/sbin /usr/sbin /sbin)
 
 typeset -U fpath
 fpath=(~/.custom/.zsh_functions ~/.zsh_functions $fpath)
