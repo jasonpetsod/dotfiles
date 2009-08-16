@@ -41,10 +41,6 @@ alias Vi="vi"
 # language documentation
 alias pd="pydoc"
 
-# remote programs
-alias irssi="ssh -A -v -t acheron.quadco.net 'scr irssi'"
-alias mutt="ssh -A -v -t mail.quadco.net 'scr mutt'"
-
 # ============================================================================
 # dotfile management
 # ============================================================================
