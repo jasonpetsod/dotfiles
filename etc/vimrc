@@ -180,6 +180,7 @@ augroup mail
     au!
     au FileType mail set notitle
     au FileType mail set spell
+    au FileType mail set tw=75
 augroup END
 
 " Objective-C files
