@@ -1,0 +1,19 @@
+[user]
+	name = Jason Petsod
+	email = jason@petsod.org
+[merge]
+	tool = vimdiff
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	d = diff
+	b = branch
+	l = log
+	un = reset HEAD --
+	mt = mergetool
+	m = merge
+	a = add
+	ds = diff --staged
+[core]
+	pager = less -FXRS
