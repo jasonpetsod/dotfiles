@@ -8,7 +8,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 
 export PAGER="less"
-export LESS="-e"
+export LESS="-FXRS"
 
 export GREP_OPTIONS="--color=auto"
 
