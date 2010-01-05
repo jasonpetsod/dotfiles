@@ -14,6 +14,6 @@
 	mt = mergetool
 	m = merge
 	a = add
-	ds = diff --staged
+	ds = diff --cached
 [core]
 	pager = less -FXRS
