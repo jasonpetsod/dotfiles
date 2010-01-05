@@ -15,5 +15,7 @@
 	m = merge
 	a = add
 	ds = diff --cached
+    pus = push
+    cl = clone
 [core]
 	pager = less -FXRS
