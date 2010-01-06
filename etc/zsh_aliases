@@ -41,6 +41,9 @@ alias Vi="vi"
 # language documentation
 alias pd="pydoc"
 
+# git
+alias gitp="git --no-pager"
+
 # ============================================================================
 # dotfile management
 # ============================================================================
