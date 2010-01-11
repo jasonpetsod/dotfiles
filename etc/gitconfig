@@ -22,5 +22,6 @@
     stav = stash save
     civ = commit -v
     fet = fetch
+    pul = pull
 [core]
 	pager = less -FXRS
