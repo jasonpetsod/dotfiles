@@ -50,6 +50,7 @@ noremap gr gT
 " ============================================================================
 
 autocmd LocationChange .* :js modes.passAllKeys = /www\.google\.com\/reader\/view/.test(buffer.URL)
+autocmd LocationChange .* :js modes.passAllKeys = /eduken\.pbworks\.com/.test(buffer.URL)
 
 " ============================================================================
 " local options
