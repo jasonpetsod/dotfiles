@@ -17,6 +17,7 @@ alias wa="whois -h whois.arin.net"
 alias bc="bc -q ~/.bcrc"
 alias getkey="gpg --keyserver pgpkeys.mit.edu --recv-key"
 alias psa="ps aux"
+alias wgetr="wget -rSNpk -np --execute robots=off -U \"Mozilla/5.001 (windows; U; NT4.0; en-us) Gecko/25250101\" $@"
 
 # Debian-specific
 if [[ $DEBIAN_HOST -eq 1 ]]; then
