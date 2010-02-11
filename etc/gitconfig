@@ -23,6 +23,6 @@
     civ = commit -v
     fet = fetch
     pul = pull
-    l1 = log --pretty=oneline --abbrev-commit
+    l1 = log --pretty=oneline
 [core]
 	pager = less -FXRS
