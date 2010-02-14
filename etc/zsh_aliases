@@ -39,8 +39,9 @@ alias nrsync="noglob rsync"
 # typos
 alias Vi="vi"
 
-# language documentation
+# Python tools
 alias pd="pydoc"
+alias ipy="ipython"
 
 # git
 alias gitp="git --no-pager"
