@@ -24,5 +24,6 @@
     fet = fetch
     pul = pull
     l1 = log --pretty=oneline
+    l1g = log --pretty=oneline --graph --decorate
 [core]
 	pager = less -FXRS
