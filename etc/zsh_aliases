@@ -21,10 +21,11 @@ alias wgetr="wget -rSNpk -np --execute robots=off -U \"Mozilla/5.001 (windows; U
 
 # Debian-specific
 if [[ $DEBIAN_HOST -eq 1 ]]; then
-    alias agi="sudo apt-get install"
     alias adi="sudo aptitude install"
-    alias acs="apt-cache -n search"
+    alias agi="sudo apt-get install"
     alias ach="apt-cache show"
+    alias acp="apt-cache policy"
+    alias acs="apt-cache -n search"
 fi
 
 # OS X-specific
