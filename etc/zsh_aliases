@@ -36,7 +36,8 @@ fi
 alias nscp="noglob scp"
 alias nrsync="noglob rsync"
 
-# typos
+# vi
+alias vi="vim"
 alias Vi="vi"
 
 # Python tools
