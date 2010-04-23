@@ -57,6 +57,10 @@ set grepprg=ack
 let mapleader = ","
 let maplocalleader = ","
 
+" cwd to active buffer (see http://vim.wikia.com/wiki/VimTip64)
+set autochdir
+autocmd BufEnter * lcd %:p:h
+
 " ============================================================================
 " GUI options
 " ============================================================================
