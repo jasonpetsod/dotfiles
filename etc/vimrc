@@ -149,8 +149,9 @@ vnoremap <silent> [ :call EnhancedCommentify('no', 'decomment')<RETURN>
 " buffers
 map <silent> <LEADER><TAB> :bnext<RETURN>
 map <silent> <LEADER>` :bprev<RETURN>
+map <silent> <LEADER>b :FufBuffer<RETURN>
 map <silent> <LEADER>d :bdelete<RETURN>
-map <silent> <LEADER>b :ls<RETURN>
+map <silent> <LEADER>e :FufFile<RETURN>
 
 " split alternate file
 map <silent> <LEADER>a :call AlternateFile('h')<RETURN>
