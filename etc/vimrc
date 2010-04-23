@@ -50,6 +50,9 @@ let g:EnhCommentifyUserBindings = 'yes'
 " allow <LEADER>K and :Man to split man page
 runtime! ftplugin/man.vim
 
+" grep
+set grepprg=ack
+
 " leaders
 let mapleader = ","
 let maplocalleader = ","
