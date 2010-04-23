@@ -203,6 +203,13 @@ augroup perl
     au FileType perl iab ddmp print Dumper
 augroup END
 
+" Python scripts
+augroup python
+    au!
+    au Syntax python source ~/.vim/syntax/python.vim
+    let python_highlight_all = 1
+augroup END
+
 " text files
 augroup text
     au!
