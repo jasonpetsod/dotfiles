@@ -14,7 +14,7 @@ if [ -n "`hg st`" ]; then
     fi
 fi
 
-hg pull -u https://hg.quadco.net/sync
+git fetch git@git.quadco.net:sync
 
 if [ -x $SYNCROOT/sync-run ]; then
     $SYNCROOT/sync-run
