@@ -14,7 +14,7 @@ if [ -n "`git ls-files --deleted --modified --others --unmerged --exclude-standa
     fi
 fi
 
-git pull
+git pull -q
 
 if [ -x $SYNCROOT/sync-run ]; then
     $SYNCROOT/sync-run
