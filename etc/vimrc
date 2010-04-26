@@ -156,6 +156,11 @@ map <silent> <LEADER>b :FufBuffer<RETURN>
 map <silent> <LEADER>d :bdelete<RETURN>
 map <silent> <LEADER>e :FufFile<RETURN>
 
+map <silent> <C-h> <C-w>h
+map <silent> <C-j> <C-w>j
+map <silent> <C-k> <C-w>k
+map <silent> <C-l> <C-w>l
+
 " split alternate file
 map <silent> <LEADER>a :call AlternateFile('h')<RETURN>
 
