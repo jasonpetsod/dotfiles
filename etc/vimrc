@@ -93,11 +93,8 @@ if &term == "screen"
     " actually set the title
     call SetTitle(expand("%:t"))
 
-    " make sure the title changes if filename changes
-    au! BufWritePost * call SetTitle(expand("%:t"))
-
-    " change title when buffer changes
-    au! BufEnter * call SetTitle(expand("%:t"))
+    " update title when filename or buffer changes
+    au! BufWritePost,BufEnter * call SetTitle(expand("%:t"))
 endif
 
 " ============================================================================
@@ -163,6 +160,9 @@ map <silent> <C-l> <C-w>l
 
 " split alternate file
 map <silent> <LEADER>a :call AlternateFile('h')<RETURN>
+
+" save with sudo
+cmap w!! %!sudo tee > /dev/null %
 
 " ============================================================================
 " filetype-specific
