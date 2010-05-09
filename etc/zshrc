@@ -26,8 +26,8 @@ autoload compinit; compinit
 # history
 # ============================================================================
 
-HISTSIZE=500
-SAVEHIST=500
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.history
 
 setopt extended_history
