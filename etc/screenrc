@@ -24,4 +24,8 @@ bind -c more 2 select 12
 bind -c more 3 select 13
 bind - command -c more
 
+# 256 color settings, from http://www.frexx.de/xterm-256-notes/
+attrcolor b ".I" 
+defbce "on" 
+
 source $HOME/.custom/.screenrc
