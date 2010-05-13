@@ -17,6 +17,7 @@
 	ds = diff --cached
     pus = push
     cl = clone
+    clo = clone
     sta = stash
     stal = stash list
     stav = stash save
