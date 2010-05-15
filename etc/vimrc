@@ -205,6 +205,12 @@ augroup mail
     au FileType mail set tw=75
 augroup END
 
+" Mako templates
+augroup mako
+    au!
+    au BufNewFile,BufReadPost *.mako set ft=mako
+augroup END
+
 " Objective-C files
 augroup objc
     au!
