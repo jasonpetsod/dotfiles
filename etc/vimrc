@@ -234,6 +234,12 @@ augroup python
     let python_highlight_all = 1
 augroup END
 
+" Sass files
+augroup sass
+    au!
+    au FileType sass set ts=4 sw=4 
+augroup END
+
 " text files
 augroup text
     au!
