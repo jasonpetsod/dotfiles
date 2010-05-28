@@ -1,0 +1,79 @@
+#!/usr/bin/env python
+#
+# setdate: because I can't ever remember the syntax for GNU date(1)
+#
+# usage: setdate [day month [year]] [hour:minute[:second]]
+#
+
+import datetime
+import re
+import subprocess
+import sys
+from optparse import OptionParser
+
+# ============================================================================
+
+months = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec')
+months = dict(zip(months, range(1, 13)))
+
+def make_dict(potential_keys, values):
+    keys = potential_keys[:len(values)]
+    return dict(zip(keys, values))
+
+def parse_time(s):
+    values = [int(v) for v in s.split(':')]
+    keys = ('hour', 'minute', 'second')
+    return make_dict(keys, values)
+
+def parse_date(values):
+    keys = ('day', 'month', 'year')
+
+    if isinstance(values[1], basestring):
+        values[1] = months[values[1].lower()]
+
+    values = [int(v) for v in values]
+
+    return make_dict(keys, values)
+
+TIME_RE = re.compile(r'\A\d?\d:\d\d(:\d\d)?\Z')
+def looks_like_time(s):
+    return TIME_RE.search(s)
+
+def parse_date_args(args):
+    date = []
+    time = None
+
+    # slurp up non--time-like arguments as the date until the first time-like
+    # argument
+    for arg in args:
+        if looks_like_time(arg):
+            time = arg
+            break
+        else:
+            date.append(arg)
+
+    if time is None:
+        # FIXME
+        raise Exception("invalid format")
+
+    dt = datetime.datetime.now()
+    dt = dt.replace(second=0, microsecond=0)
+
+    dt = dt.replace(**parse_time(time))
+    if date:
+        dt = dt.replace(**parse_date(date))
+
+    return dt
+
+def set_date(dt):
+    date_s = dt.strftime('%m%d%H%M%Y.%S')
+    command = "sudo date %s" % date_s
+    command = command.split()
+    subprocess.check_call(command)
+
+# ============================================================================
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    date = parse_date_args(args)
+    set_date(date)
