@@ -75,6 +75,10 @@ endif
 " colors
 " ============================================================================
 
+if &term == "screen-bce"
+    set t_Co=256
+endif
+
 if &t_Co == 256
     let g:zenburn_high_Contrast = 1
     let g:zenburn_alternate_Visual = 1
