@@ -89,7 +89,7 @@ endif
 " GNU screen titles
 " ============================================================================
 
-if &term == "screen"
+if &term == "screen" || &term == "screen-bce"
     function! SetTitle(s)
         let s = a:s
 
