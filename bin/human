@@ -1,0 +1,16 @@
+#!/bin/bash
+
+size=$1
+if [[ -z "${size}" ]]; then
+    echo "ERROR: no size specified"
+    exit 1
+fi
+si_size=$size
+
+echo "${size} B"
+for suffix in K M G T P; do
+    size=$(echo "${size}/1024" | bc -l)
+    si_size=$(echo "${si_size}/1000" | bc -l)
+    printf "%.2f %siB (%.2f %sB)\n" "${size}" "${suffix}" \
+        "${si_size}" "${suffix}"
+done
