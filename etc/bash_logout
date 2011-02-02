@@ -1,3 +1,0 @@
-if [ -n "$SSH_AUTH_SOCK_ORIG" ]; then
-    reagent del "$SSH_AUTH_SOCK_ORIG"
-fi
