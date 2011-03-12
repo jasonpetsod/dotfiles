@@ -64,10 +64,6 @@ if [[ -f /etc/debian_version ]]; then
     export DEBIAN_HOST=1
 fi
 
-if [[ -x /usr/bin/lsb_release && `/usr/bin/lsb_release -s -i` = "Ubuntu" ]]; then
-    export UBUNTU_HOST=1
-fi
-
 # ============================================================================
 # aliases
 # ============================================================================
