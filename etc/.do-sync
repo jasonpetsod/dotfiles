@@ -13,12 +13,7 @@ else
 fi
 
 for f in `ls -1 $THIS`; do
-    if [ "$f" == "RCS-disabled" ]; then
-        continue
-    fi
-
     full_f=$THIS/$f
-    
     $LN -sfT $full_f $DEST/.$f
 done
 
